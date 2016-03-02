@@ -46,22 +46,22 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     }
 
     @Override
-    public void configure(final ClientDetailsServiceConfigurer clients) throws Exception { // @formatter:off
+    public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {// @formatter:off
         clients.jdbc(dataSource())
                .withClient("sampleClientId")
                .authorizedGrantTypes("implicit")
                .scopes("read","write","foo","bar")
                .autoApprove(false)
                .accessTokenValiditySeconds(3600)
-               
+
                .and()
                .withClient("fooClientIdPassword")
                .secret("secret")
                .authorizedGrantTypes("password","authorization_code", "refresh_token")
                .scopes("foo","read","write")
-               .accessTokenValiditySeconds(15) // 1 hour
+               .accessTokenValiditySeconds(3600) // 1 hour
                .refreshTokenValiditySeconds(2592000) // 30 days
-               
+
                .and()
                .withClient("barClientIdPassword")
                .secret("secret")

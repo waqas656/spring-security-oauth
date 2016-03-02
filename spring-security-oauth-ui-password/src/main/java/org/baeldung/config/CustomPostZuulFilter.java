@@ -1,16 +1,18 @@
 package org.baeldung.config;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 
 import org.apache.commons.io.IOUtils;
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 
@@ -25,29 +27,30 @@ public class CustomPostZuulFilter extends ZuulFilter {
         final RequestContext ctx = RequestContext.getCurrentContext();
         logger.info("in zuul filter " + ctx.getRequest().getRequestURI());
 
-        JsonNode json;
         try {
             final InputStream is = ctx.getResponseDataStream();
-            final String responseBody = IOUtils.toString(is, "UTF-8");
-
-            ctx.setResponseBody(responseBody);
-
+            String responseBody = IOUtils.toString(is, "UTF-8");
             if (responseBody.contains("refresh_token")) {
-                json = mapper.readTree(responseBody);
-                final String refreshToken = json.get("refresh_token").getTextValue();
+                final Map<String, Object> responseMap = mapper.readValue(responseBody, new TypeReference<Map<String, Object>>() {
+                });
+                final String refreshToken = responseMap.get("refresh_token").toString();
+                responseMap.remove("refresh_token");
+                responseBody = mapper.writeValueAsString(responseMap);
+
                 final Cookie cookie = new Cookie("refreshToken", refreshToken);
                 cookie.setHttpOnly(true);
                 // cookie.setSecure(true);
                 cookie.setPath(ctx.getRequest().getContextPath() + "/oauth/token");
                 cookie.setMaxAge(2592000); // 30 days
                 ctx.getResponse().addCookie(cookie);
-
                 logger.info("refresh token = " + refreshToken);
+
             }
-        } catch (final Exception e) {
+            ctx.setResponseBody(responseBody);
+
+        } catch (final IOException e) {
             logger.error("Error occured in zuul post filter", e);
         }
-
         return null;
     }
 
