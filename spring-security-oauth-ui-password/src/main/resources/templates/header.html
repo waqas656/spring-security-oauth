@@ -46,9 +46,12 @@ app.controller('mainCtrl', function($scope,$resource,$http,$httpParamSerializer,
     
     $scope.login = function() {   
          obtainAccessToken($scope.loginData);
-   }
+    }
     
     
+    $scope.refreshAccessToken = function(){
+    	obtainAccessToken($scope.refreshData);
+    }
     
     function obtainAccessToken(params){
         var req = {
