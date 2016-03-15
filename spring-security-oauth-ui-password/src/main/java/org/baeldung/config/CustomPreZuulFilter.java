@@ -31,7 +31,6 @@ public class CustomPreZuulFilter extends ZuulFilter {
             logger.info("pre filter");
             logger.info(ctx.getRequest().getHeader("Authorization"));
 
-            //
             final HttpServletRequest req = ctx.getRequest();
 
             final String refreshToken = extractRefreshToken(req);

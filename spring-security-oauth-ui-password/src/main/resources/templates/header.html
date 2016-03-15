@@ -4,7 +4,7 @@
     <div class="navbar-header">
       <a class="navbar-brand" th:href="@{/}">Spring Security OAuth</a>
     </div>
-    
+    <p class="navbar-text navbar-right">{{organization}} &nbsp; &nbsp; &nbsp;</p>
   </div><!-- /.container-fluid -->
 </nav>
 
@@ -24,6 +24,8 @@ app.controller('mainCtrl', function($scope,$resource,$http,$httpParamSerializer,
     $scope.foo = {id:0 , name:"sample foo"};
     $scope.foos = $resource("http://localhost:8081/spring-security-oauth-resource/foos/:fooId",{fooId:'@id'});
     
+    $scope.organiztion = "";
+    
     $scope.getFoo = function(){
         $scope.foo = $scope.foos.get({fooId:$scope.foo.id});
     }
@@ -39,6 +41,7 @@ app.controller('mainCtrl', function($scope,$resource,$http,$httpParamSerializer,
     }else{
         if($cookies.get("access_token")){
             $http.defaults.headers.common.Authorization= 'Bearer ' + $cookies.get("access_token");
+            getOrganization();
         }else{
         	obtainAccessToken($scope.refreshData);
         }
@@ -71,6 +74,14 @@ app.controller('mainCtrl', function($scope,$resource,$http,$httpParamSerializer,
                 window.location.href = "login";
             }
         );
+    }
+    
+    function getOrganization(){
+    	$http.get("http://localhost:8081/spring-security-oauth-resource/users/extra")
+        .then(function(response) {
+        	console.log(response);
+            $scope.organization = response.data.organization;
+        });
     }
     
 });
