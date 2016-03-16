@@ -24,6 +24,7 @@ public class UserController {
     public Map<String, Object> getExtraInfo(OAuth2Authentication auth) {
         final OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) auth.getDetails();
         final OAuth2AccessToken accessToken = tokenStore.readAccessToken(details.getTokenValue());
+        System.out.println(accessToken);
         return accessToken.getAdditionalInformation();
     }
 }
