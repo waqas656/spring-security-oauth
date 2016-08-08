@@ -34,18 +34,21 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
     @Override
     public void configure(final HttpSecurity http) throws Exception {
         // @formatter:off
-        http
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-            .and().authorizeRequests().anyRequest().authenticated();
-//            .requestMatchers().antMatchers("/foos/**","/bars/**")
-//            .and()
-//            .authorizeRequests()
-//                .antMatchers(HttpMethod.GET,"/foos/**").access("#oauth2.hasScope('foo') and #oauth2.hasScope('read')")
-//                .antMatchers(HttpMethod.POST,"/foos/**").access("#oauth2.hasScope('foo') and #oauth2.hasScope('write')")
-//                .antMatchers(HttpMethod.GET,"/bars/**").access("#oauth2.hasScope('bar') and #oauth2.hasScope('read')")
-//                .antMatchers(HttpMethod.POST,"/bars/**").access("#oauth2.hasScope('bar') and #oauth2.hasScope('write') and hasRole('ROLE_ADMIN')")
-            ;
-        // @formatter:on
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and().authorizeRequests()
+				.anyRequest().authenticated();
+		// .requestMatchers().antMatchers("/foos/**","/bars/**")
+		// .and()
+		// .authorizeRequests()
+		// .antMatchers(HttpMethod.GET,"/foos/**").access("#oauth2.hasScope('foo')
+		// and #oauth2.hasScope('read')")
+		// .antMatchers(HttpMethod.POST,"/foos/**").access("#oauth2.hasScope('foo')
+		// and #oauth2.hasScope('write')")
+		// .antMatchers(HttpMethod.GET,"/bars/**").access("#oauth2.hasScope('bar')
+		// and #oauth2.hasScope('read')")
+		// .antMatchers(HttpMethod.POST,"/bars/**").access("#oauth2.hasScope('bar')
+		// and #oauth2.hasScope('write') and hasRole('ROLE_ADMIN')")
+		;
+		// @formatter:on
     }
 
     @Override
@@ -84,19 +87,15 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
     // JDBC token store configuration
 
     /*
-    @Bean
-    public DataSource dataSource() {
-        final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
-        dataSource.setUrl(env.getProperty("jdbc.url"));
-        dataSource.setUsername(env.getProperty("jdbc.user"));
-        dataSource.setPassword(env.getProperty("jdbc.pass"));
-        return dataSource;
-    }
-
-    @Bean
-    public TokenStore tokenStore() {
-        return new JdbcTokenStore(dataSource());
-    }
-    */
+     * @Bean public DataSource dataSource() { final DriverManagerDataSource
+     * dataSource = new DriverManagerDataSource();
+     * dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+     * dataSource.setUrl(env.getProperty("jdbc.url"));
+     * dataSource.setUsername(env.getProperty("jdbc.user"));
+     * dataSource.setPassword(env.getProperty("jdbc.pass")); return dataSource;
+     * }
+     * 
+     * @Bean public TokenStore tokenStore() { return new
+     * JdbcTokenStore(dataSource()); }
+     */
 }

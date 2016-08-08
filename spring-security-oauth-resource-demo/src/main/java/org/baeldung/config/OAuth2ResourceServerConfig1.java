@@ -16,11 +16,10 @@ public class OAuth2ResourceServerConfig1 extends ResourceServerConfigurerAdapter
     @Override
     public void configure(final HttpSecurity http) throws Exception {
         // @formatter:off
-        http
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-            .and().authorizeRequests().anyRequest().authenticated();
-            ;
-        // @formatter:on
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and().authorizeRequests()
+				.anyRequest().authenticated();
+		;
+		// @formatter:on
     }
 
     @Bean

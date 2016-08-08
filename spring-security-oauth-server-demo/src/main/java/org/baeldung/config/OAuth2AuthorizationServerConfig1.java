@@ -30,14 +30,11 @@ public class OAuth2AuthorizationServerConfig1 extends AuthorizationServerConfigu
 
     @Override
     public void configure(final ClientDetailsServiceConfigurer clients) throws Exception { // @formatter:off
-        clients.inMemory()
-               .withClient("fooClientIdPassword")
-               .secret("secret")
-               .authorizedGrantTypes("password", "authorization_code")
-               .scopes("foo", "read", "write")
-               .accessTokenValiditySeconds(3600) // 1 hour
-               ;
-    } // @formatter:on
+		clients.inMemory().withClient("fooClientIdPassword").secret("secret")
+				.authorizedGrantTypes("password", "authorization_code").scopes("foo", "read", "write")
+				.accessTokenValiditySeconds(3600) // 1 hour
+		;
+	} // @formatter:on
 
     @Override
     public void configure(final AuthorizationServerEndpointsConfigurer endpoints) throws Exception {

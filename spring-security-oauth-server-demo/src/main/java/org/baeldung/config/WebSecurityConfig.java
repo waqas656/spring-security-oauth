@@ -13,11 +13,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void globalUserDetails(final AuthenticationManagerBuilder auth) throws Exception {// @formatter:off
-        auth.inMemoryAuthentication().
-            withUser("john").password("123").roles("USER").
-            and().
-            withUser("tom").password("111").roles("ADMIN");
-    }// @formatter:on
+		auth.inMemoryAuthentication().withUser("john").password("123").roles("USER").and().withUser("tom")
+				.password("111").roles("ADMIN");
+	}// @formatter:on
 
     @Override
     @Bean
@@ -28,12 +26,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         // @formatter:off
-        http.authorizeRequests()
-            .antMatchers("/login").permitAll()
-            .anyRequest().authenticated()
-            .and().formLogin().permitAll()
-            ;
-        // @formatter:on
+		http.authorizeRequests().antMatchers("/login").permitAll().anyRequest().authenticated().and().formLogin()
+				.permitAll();
+		// @formatter:on
     }
 
 }
