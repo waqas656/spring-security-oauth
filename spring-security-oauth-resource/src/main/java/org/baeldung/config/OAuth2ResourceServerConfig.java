@@ -51,6 +51,21 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
 		// @formatter:on
     }
 
+    // Remote token service
+    /*
+    @Primary
+    @Bean
+    public RemoteTokenServices tokenService() {
+        final RemoteTokenServices tokenService = new RemoteTokenServices();
+        tokenService.setCheckTokenEndpointUrl("http://localhost:8081/spring-security-oauth-server/oauth/check_token");
+        tokenService.setClientId("fooClientIdPassword");
+        tokenService.setClientSecret("secret");
+        return tokenService;
+    }
+    */
+
+    // JWT token store
+
     @Override
     public void configure(final ResourceServerSecurityConfigurer config) {
         config.tokenServices(tokenServices());
@@ -94,7 +109,7 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
      * dataSource.setUsername(env.getProperty("jdbc.user"));
      * dataSource.setPassword(env.getProperty("jdbc.pass")); return dataSource;
      * }
-     * 
+     *
      * @Bean public TokenStore tokenStore() { return new
      * JdbcTokenStore(dataSource()); }
      */
