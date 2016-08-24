@@ -87,7 +87,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     public JwtAccessTokenConverter accessTokenConverter() {
         final JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         // converter.setSigningKey("123");
-        final KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("mytest.jks"), "mypass".toCharArray());
+        final KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("/mytest.jks"), "mypass".toCharArray());
         converter.setKeyPair(keyStoreKeyFactory.getKeyPair("mytest"));
         return converter;
     }
@@ -114,11 +114,11 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
      * DataSourceInitializer(); initializer.setDataSource(dataSource);
      * initializer.setDatabasePopulator(databasePopulator()); return
      * initializer; }
-     * 
+     *
      * private DatabasePopulator databasePopulator() { final
      * ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
      * populator.addScript(schemaScript); return populator; }
-     * 
+     *
      * @Bean public DataSource dataSource() { final DriverManagerDataSource
      * dataSource = new DriverManagerDataSource();
      * dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
@@ -126,7 +126,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
      * dataSource.setUsername(env.getProperty("jdbc.user"));
      * dataSource.setPassword(env.getProperty("jdbc.pass")); return dataSource;
      * }
-     * 
+     *
      * @Bean public TokenStore tokenStore() { return new
      * JdbcTokenStore(dataSource()); }
      */
