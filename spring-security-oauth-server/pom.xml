@@ -53,7 +53,7 @@
 
     <build>
         <finalName>spring-security-oauth-server</finalName>
-        <resources>
+        <!-- <resources>
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
@@ -61,13 +61,32 @@
                     <exclude>*.jks</exclude>
                 </excludes>
             </resource>
-        </resources>
+        </resources> -->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <addResources>true</addResources>
+                </configuration>
             </plugin>
         </plugins>
     </build>
-
+    
+	<!-- <profiles>
+	  <profile>
+	    <id>dev</id>
+	    <build>
+	      <resources>
+	        <resource>
+	          <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>*.jks</exclude>
+                </excludes>
+	        </resource>
+	      </resources>
+	    </build>
+	  </profile>
+	</profiles> -->
 </project>
