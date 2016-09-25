@@ -19,3 +19,7 @@ mvn clean install
 ```
 mvn spring-boot:run
 ```
+- _spring-security-oauth-ui-password_ has "live" profile for live tests, in order to run it use the following command
+```
+mvn clean install -Plive
+```
