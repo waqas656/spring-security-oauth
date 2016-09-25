@@ -15,11 +15,13 @@ mvn clean install
     - spring-security-oauth-ui-implicit  (port = 8083)
     - spring-security-oauth-ui-password  (port = 8084)
 - To run the project, run both _spring-security-oauth-server_ and _spring-security-oauth-resource_ first - then run any of the UI modules
-- You can run any sub-module using command line
+
+- You can run any sub-module using command line: 
 ```
 mvn spring-boot:run
 ```
-- _spring-security-oauth-ui-password_ has "live" profile for live tests, in order to run it use the following command
+
+- _spring-security-oauth-ui-password_ has "live" profile for live tests, in order to run it use the following command: 
 ```
 mvn clean install -Plive
 ```
