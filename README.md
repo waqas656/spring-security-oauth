@@ -2,6 +2,8 @@
 
 ### Relevant Articles: 
 - [Spring REST API + OAuth2 + AngularJS](http://www.baeldung.com/rest-api-spring-oauth2-angularjs)
+- [Using JWT with Spring Security OAuth](http://www.baeldung.com/spring-security-oauth-jwt)
+- [OAuth2 for a Spring REST API – Handle the Refresh Token in AngularJS](http://www.baeldung.com/spring-security-oauth2-refresh-token-angular-js)
 
 ### Build the Project
 ```
