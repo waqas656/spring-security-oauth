@@ -47,7 +47,7 @@ public class AuthorizationLiveTest {
         assertEquals(200, barReadResponse.getStatusCode());
         assertNotNull(barReadResponse.jsonPath().get("name"));
 
-        final Response barWritResponse = RestAssured.given().contentType(MediaType.APPLICATION_JSON_VALUE).header("Authorization", "Bearer " + accessToken).body("{\"id\":1,\"name\":\"MyBar\"}").post("http://localhost:8081/spring-security-oauth-resource/bars");
+        final Response barWritResponse = RestAssured.given().contentType(MediaType.APPLICATION_JSON_VALUE).header("Authorization", "Bearer " + accessToken).body("{\"id\":1,\"name\":\"MyBar\"}").post("http://localhost:8082/spring-security-oauth-resource/bars");
         assertEquals(403, barWritResponse.getStatusCode());
     }
 
@@ -62,7 +62,7 @@ public class AuthorizationLiveTest {
         assertEquals(200, barResponse.getStatusCode());
         assertNotNull(barResponse.jsonPath().get("name"));
 
-        final Response barWritResponse = RestAssured.given().contentType(MediaType.APPLICATION_JSON_VALUE).header("Authorization", "Bearer " + accessToken).body("{\"id\":1,\"name\":\"MyBar\"}").post("http://localhost:8081/spring-security-oauth-resource/bars");
+        final Response barWritResponse = RestAssured.given().contentType(MediaType.APPLICATION_JSON_VALUE).header("Authorization", "Bearer " + accessToken).body("{\"id\":1,\"name\":\"MyBar\"}").post("http://localhost:8082/spring-security-oauth-resource/bars");
         assertEquals(201, barWritResponse.getStatusCode());
         assertEquals("MyBar", barWritResponse.jsonPath().get("name"));
     }
