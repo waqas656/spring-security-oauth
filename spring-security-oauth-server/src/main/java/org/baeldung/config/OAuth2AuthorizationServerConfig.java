@@ -25,6 +25,10 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
+import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.jdbc.datasource.init.*;
+import org.springframework.jdbc.datasource.*;
+import javax.sql.DataSource;
 
 @Configuration
 @PropertySource({ "classpath:persistence.properties" })
@@ -71,13 +75,13 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     public void configure(final AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         // @formatter:off
 		final TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-		tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), accessTokenConverter()));
+		tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer()));
 		endpoints.tokenStore(tokenStore())
 				// .accessTokenConverter(accessTokenConverter())
 				.tokenEnhancer(tokenEnhancerChain).authenticationManager(authenticationManager);
 		// @formatter:on
     }
-
+	/*
     @Bean
     public TokenStore tokenStore() {
         return new JwtTokenStore(accessTokenConverter());
@@ -91,7 +95,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
         converter.setKeyPair(keyStoreKeyFactory.getKeyPair("mytest"));
         return converter;
     }
-
+	*/
     @Bean
     @Primary
     public DefaultTokenServices tokenServices() {
@@ -107,27 +111,34 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     }
 
     // JDBC token store configuration
-
-    /*
-     * @Bean public DataSourceInitializer dataSourceInitializer(final DataSource
-     * dataSource) { final DataSourceInitializer initializer = new
-     * DataSourceInitializer(); initializer.setDataSource(dataSource);
-     * initializer.setDatabasePopulator(databasePopulator()); return
-     * initializer; }
-     *
-     * private DatabasePopulator databasePopulator() { final
-     * ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-     * populator.addScript(schemaScript); return populator; }
-     *
-     * @Bean public DataSource dataSource() { final DriverManagerDataSource
-     * dataSource = new DriverManagerDataSource();
-     * dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
-     * dataSource.setUrl(env.getProperty("jdbc.url"));
-     * dataSource.setUsername(env.getProperty("jdbc.user"));
-     * dataSource.setPassword(env.getProperty("jdbc.pass")); return dataSource;
-     * }
-     *
-     * @Bean public TokenStore tokenStore() { return new
-     * JdbcTokenStore(dataSource()); }
-     */
+    
+    @Bean 
+    public DataSourceInitializer dataSourceInitializer(final DataSource
+      dataSource) { 
+        final DataSourceInitializer initializer = new
+          DataSourceInitializer(); 
+        initializer.setDataSource(dataSource);
+        initializer.setDatabasePopulator(databasePopulator()); 
+		return initializer; 
+    }
+     
+    private DatabasePopulator databasePopulator() { final
+        ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+        populator.addScript(schemaScript); 
+        return populator; 
+    }
+     
+    @Bean public DataSource dataSource() { 
+	    final DriverManagerDataSource dataSource = 
+		  new DriverManagerDataSource();
+        dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+        dataSource.setUrl(env.getProperty("jdbc.url"));
+        dataSource.setUsername(env.getProperty("jdbc.user"));
+        dataSource.setPassword(env.getProperty("jdbc.pass")); return dataSource;
+    }
+     
+    @Bean public TokenStore tokenStore() { 
+        return new JdbcTokenStore(dataSource()); 
+    }
+     
 }

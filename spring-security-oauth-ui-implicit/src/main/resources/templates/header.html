@@ -53,6 +53,7 @@ app.controller('mainCtrl', function($scope,$resource,$http,$rootScope) {
 	$scope.$on('oauth:login', function(event, token) {
 		$http.defaults.headers.common.Authorization= 'Bearer ' + token.access_token;
 		console.log('Authorized third party app with token', token.access_token);
+		$scope.token=token.access_token;
 	});
 
 	$scope.foo = {id:0 , name:"sample foo"};
@@ -92,6 +93,21 @@ app.controller('mainCtrl', function($scope,$resource,$http,$rootScope) {
         $scope.bar = $scope.bars.save($scope.bar, function(){
             $rootScope.message = "Bar Created Successfully";
         });
+    }
+	
+    $scope.revokeToken = $resource("http://localhost:8082/spring-security-oauth-resource/tokens/revoke/:tokenId",{tokenId:'@tokenId'});
+    $scope.tokens = $resource("http://localhost:8082/spring-security-oauth-resource/tokens");
+    
+    $scope.getTokens = function(){
+        $scope.tokenList = $scope.tokens.query();	
+    }
+	
+    $scope.revokeAccessToken = function(){
+        if ($scope.tokenToRevoke && $scope.tokenToRevoke.length !=0){
+            $scope.revokeToken.save({tokenId:$scope.tokenToRevoke});
+            $rootScope.message="Token:"+$scope.tokenToRevoke+" was revoked!";
+            $scope.tokenToRevoke="";
+        }
     }
     
     
