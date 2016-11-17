@@ -17,37 +17,37 @@ import java.util.ArrayList;
 
 @Controller
 public class TokenController {
-	
-    @Resource(name="tokenServices")
+
+    @Resource(name = "tokenServices")
     ConsumerTokenServices tokenServices;
-	
-    @Resource(name="tokenStore")
+
+    @Resource(name = "tokenStore")
     TokenStore tokenStore;
-	
+
     @RequestMapping(method = RequestMethod.POST, value = "/tokens/revoke/{tokenId:.*}")
     @ResponseBody
     public String revokeToken(@PathVariable String tokenId) {
         tokenServices.revokeToken(tokenId);
-	    return tokenId;
+        return tokenId;
     }
-	 
+
     @RequestMapping(method = RequestMethod.GET, value = "/tokens")
     @ResponseBody
     public List<String> getTokens() {
         List<String> tokenValues = new ArrayList<String>();
-        Collection<OAuth2AccessToken> tokens = tokenStore.findTokensByClientId("sampleClientId"); 
-        if (tokens!=null){
-            for (OAuth2AccessToken token:tokens){
+        Collection<OAuth2AccessToken> tokens = tokenStore.findTokensByClientId("sampleClientId");
+        if (tokens != null) {
+            for (OAuth2AccessToken token : tokens) {
                 tokenValues.add(token.getValue());
             }
         }
         return tokenValues;
-    }	
-	
-	@RequestMapping(method = RequestMethod.POST, value = "/tokens/revokeRefreshToken/{tokenId:.*}")
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/tokens/revokeRefreshToken/{tokenId:.*}")
     @ResponseBody
     public String revokeRefreshToken(@PathVariable String tokenId) {
-        if (tokenStore instanceof JdbcTokenStore){
+        if (tokenStore instanceof JdbcTokenStore) {
             ((JdbcTokenStore) tokenStore).removeRefreshToken(tokenId);
         }
         return tokenId;

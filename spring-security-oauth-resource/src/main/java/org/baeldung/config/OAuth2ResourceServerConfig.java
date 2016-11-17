@@ -74,27 +74,28 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
     public void configure(final ResourceServerSecurityConfigurer config) {
         config.tokenServices(tokenServices());
     }
-	/*
+
+    /*
     @Bean
     public TokenStore tokenStore() {
-        return new JwtTokenStore(accessTokenConverter());
+    return new JwtTokenStore(accessTokenConverter());
     }
-
+    
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
-        final JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        // converter.setSigningKey("123");
-        final Resource resource = new ClassPathResource("public.txt");
-        String publicKey = null;
-        try {
-            publicKey = IOUtils.toString(resource.getInputStream());
-        } catch (final IOException e) {
-            throw new RuntimeException(e);
-        }
-        converter.setVerifierKey(publicKey);
-        return converter;
+    final JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+    // converter.setSigningKey("123");
+    final Resource resource = new ClassPathResource("public.txt");
+    String publicKey = null;
+    try {
+        publicKey = IOUtils.toString(resource.getInputStream());
+    } catch (final IOException e) {
+        throw new RuntimeException(e);
     }
-	*/
+    converter.setVerifierKey(publicKey);
+    return converter;
+    }
+    */
     @Bean
     @Primary
     public DefaultTokenServices tokenServices() {
@@ -105,18 +106,19 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
 
     // JDBC token store configuration
 
-    
-      @Bean 
-	  public DataSource dataSource() 
-	  { final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-      dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
-      dataSource.setUrl(env.getProperty("jdbc.url"));
-      dataSource.setUsername(env.getProperty("jdbc.user"));
-      dataSource.setPassword(env.getProperty("jdbc.pass")); return dataSource;
-      }
-     
-      @Bean 
-	  public TokenStore tokenStore() { return new
-      JdbcTokenStore(dataSource()); }
-     
+    @Bean
+    public DataSource dataSource() {
+        final DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+        dataSource.setUrl(env.getProperty("jdbc.url"));
+        dataSource.setUsername(env.getProperty("jdbc.user"));
+        dataSource.setPassword(env.getProperty("jdbc.pass"));
+        return dataSource;
+    }
+
+    @Bean
+    public TokenStore tokenStore() {
+        return new JdbcTokenStore(dataSource());
+    }
+
 }

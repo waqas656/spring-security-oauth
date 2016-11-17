@@ -81,21 +81,22 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 				.tokenEnhancer(tokenEnhancerChain).authenticationManager(authenticationManager);
 		// @formatter:on
     }
-	/*
+
+    /*
     @Bean
     public TokenStore tokenStore() {
-        return new JwtTokenStore(accessTokenConverter());
+    return new JwtTokenStore(accessTokenConverter());
     }
-
+    
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
-        final JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        // converter.setSigningKey("123");
-        final KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("mytest.jks"), "mypass".toCharArray());
-        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("mytest"));
-        return converter;
+    final JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+    // converter.setSigningKey("123");
+    final KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("mytest.jks"), "mypass".toCharArray());
+    converter.setKeyPair(keyStoreKeyFactory.getKeyPair("mytest"));
+    return converter;
     }
-	*/
+    */
     @Bean
     @Primary
     public DefaultTokenServices tokenServices() {
@@ -111,34 +112,34 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     }
 
     // JDBC token store configuration
-    
-    @Bean 
-    public DataSourceInitializer dataSourceInitializer(final DataSource
-      dataSource) { 
-        final DataSourceInitializer initializer = new
-          DataSourceInitializer(); 
+
+    @Bean
+    public DataSourceInitializer dataSourceInitializer(final DataSource dataSource) {
+        final DataSourceInitializer initializer = new DataSourceInitializer();
         initializer.setDataSource(dataSource);
-        initializer.setDatabasePopulator(databasePopulator()); 
-		return initializer; 
+        initializer.setDatabasePopulator(databasePopulator());
+        return initializer;
     }
-     
-    private DatabasePopulator databasePopulator() { final
-        ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-        populator.addScript(schemaScript); 
-        return populator; 
+
+    private DatabasePopulator databasePopulator() {
+        final ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+        populator.addScript(schemaScript);
+        return populator;
     }
-     
-    @Bean public DataSource dataSource() { 
-	    final DriverManagerDataSource dataSource = 
-		  new DriverManagerDataSource();
+
+    @Bean
+    public DataSource dataSource() {
+        final DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
         dataSource.setUrl(env.getProperty("jdbc.url"));
         dataSource.setUsername(env.getProperty("jdbc.user"));
-        dataSource.setPassword(env.getProperty("jdbc.pass")); return dataSource;
+        dataSource.setPassword(env.getProperty("jdbc.pass"));
+        return dataSource;
     }
-     
-    @Bean public TokenStore tokenStore() { 
-        return new JdbcTokenStore(dataSource()); 
+
+    @Bean
+    public TokenStore tokenStore() {
+        return new JdbcTokenStore(dataSource());
     }
-     
+
 }
