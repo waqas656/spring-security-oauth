@@ -79,15 +79,17 @@ app.controller('mainCtrl', function($scope,$resource,$http,$httpParamSerializer,
     
     function getOrganization(){
     	var token = $cookies.get("access_token");
-    	var payload = jwtHelper.decodeToken(token);
+    	//JWT
+    	/* var payload = jwtHelper.decodeToken(token);
     	console.log(payload);
-    	$scope.organization = payload.organization;
+    	$scope.organization = payload.organization; */
     	
-    	/* $http.get("http://localhost:8082/spring-security-oauth-resource/users/extra")
+    	//JDBC
+    	 $http.get("http://localhost:8082/spring-security-oauth-resource/users/extra")
         .then(function(response) {
         	console.log(response);
             $scope.organization = response.data.organization;
-        }); */
+        }); 
     }
     
 });
