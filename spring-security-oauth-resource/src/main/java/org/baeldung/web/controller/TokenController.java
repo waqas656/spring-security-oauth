@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.*;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;
@@ -42,4 +43,13 @@ public class TokenController {
         }
         return tokenValues;
     }	
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/tokens/revokeRefreshToken/{tokenId:.*}")
+    @ResponseBody
+    public String revokeRefreshToken(@PathVariable String tokenId) {
+        if (tokenStore instanceof JdbcTokenStore){
+            ((JdbcTokenStore) tokenStore).removeRefreshToken(tokenId);
+        }
+        return tokenId;
+    }
 }
