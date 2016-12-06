@@ -46,8 +46,8 @@ create table if not exists oauth_approvals (
 	clientId VARCHAR(255),
 	scope VARCHAR(255),
 	status VARCHAR(10),
-	expiresAt TIMESTAMP,
-	lastModifiedAt TIMESTAMP
+	expiresAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	lastModifiedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 create table if not exists ClientDetails (
@@ -62,4 +62,15 @@ create table if not exists ClientDetails (
   refresh_token_validity INTEGER,
   additionalInformation VARCHAR(4096),
   autoApproveScopes VARCHAR(255)
+);
+
+create table if not exists users (
+  username varchar(256),
+  password varchar(256),
+  enabled boolean
+);
+
+create table if not exists authorities (
+  username varchar(256),
+  authority varchar(256)
 );
