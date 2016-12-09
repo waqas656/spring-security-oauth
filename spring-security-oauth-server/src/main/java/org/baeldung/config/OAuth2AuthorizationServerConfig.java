@@ -19,7 +19,6 @@ import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -46,20 +45,15 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     @Value("classpath:schema.sql")
     private Resource schemaScript;
     
-	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-    //
-
     @Override
     public void configure(final AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
         oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
-        oauthServer.passwordEncoder(passwordEncoder);
     }
 
     @Override
     public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {// @formatter:off
 		clients
-				.jdbc(dataSource()).passwordEncoder(passwordEncoder)
+				.jdbc(dataSource())
 				.inMemory().withClient("sampleClientId").authorizedGrantTypes("implicit")
 				.scopes("read", "write", "foo", "bar").autoApprove(false).accessTokenValiditySeconds(3600)
 

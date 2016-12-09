@@ -35,6 +35,15 @@ public class AuthorizationLiveTest {
         final Response barResponse = RestAssured.given().header("Authorization", "Bearer " + accessToken).get("http://localhost:8082/spring-security-oauth-resource/bars/1");
         assertEquals(403, barResponse.getStatusCode());
     }
+    
+    @Test
+    public void accessDynamicClient() {
+        final String accessToken = obtainAccessToken("dynamicClientId", "user", "pass");
+
+        final Response fooResponse = RestAssured.given().header("Authorization", "Bearer " + accessToken).get("http://localhost:8082/spring-security-oauth-resource/foos/1");
+        assertEquals(200, fooResponse.getStatusCode());
+        assertNotNull(fooResponse.jsonPath().get("name"));
+    }
 
     @Test
     public void givenUser_whenUseBarClient_thenOkForBarResourceReadOnly() {
