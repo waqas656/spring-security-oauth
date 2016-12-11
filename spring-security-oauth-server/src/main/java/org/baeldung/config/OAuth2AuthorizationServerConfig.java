@@ -2,6 +2,8 @@ package org.baeldung.config;
 
 import java.util.Arrays;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,9 +12,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.init.DataSourceInitializer;
+import org.springframework.jdbc.datasource.init.DatabasePopulator;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -22,13 +28,7 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
-import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
-import org.springframework.jdbc.datasource.init.*;
-import org.springframework.jdbc.datasource.*;
-import javax.sql.DataSource;
 
 @Configuration
 @PropertySource({ "classpath:persistence.properties" })
@@ -44,9 +44,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 
     @Value("classpath:schema.sql")
     private Resource schemaScript;
-
-    //
-
+    
     @Override
     public void configure(final AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
         oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
@@ -55,7 +53,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     @Override
     public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {// @formatter:off
 		clients
-				// .jdbc(dataSource())
+				.jdbc(dataSource())
 				.inMemory().withClient("sampleClientId").authorizedGrantTypes("implicit")
 				.scopes("read", "write", "foo", "bar").autoApprove(false).accessTokenValiditySeconds(3600)
 
@@ -81,6 +79,13 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 				.tokenEnhancer(tokenEnhancerChain).authenticationManager(authenticationManager);
 		// @formatter:on
     }
+    
+    @Autowired
+	public void init(AuthenticationManagerBuilder auth) throws Exception {
+		// @formatter:off
+		auth.jdbcAuthentication().dataSource(dataSource());
+		// @formatter:on
+	}
 
     /*
     @Bean
