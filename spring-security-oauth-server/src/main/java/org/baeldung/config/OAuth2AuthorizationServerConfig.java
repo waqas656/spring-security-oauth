@@ -45,6 +45,9 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     @Value("classpath:schema.sql")
     private Resource schemaScript;
     
+    @Value("classpath:data.sql")
+    private Resource dataScript;
+    
     @Override
     public void configure(final AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
         oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
@@ -129,6 +132,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     private DatabasePopulator databasePopulator() {
         final ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
         populator.addScript(schemaScript);
+        populator.addScript(dataScript);
         return populator;
     }
 
