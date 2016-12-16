@@ -30,10 +30,10 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
-@Configuration
-@PropertySource({ "classpath:persistence.properties" })
-@EnableAuthorizationServer
-public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+//@Configuration
+//@PropertySource({ "classpath:persistence.properties" })
+//@EnableAuthorizationServer
+public class OAuth2AuthorizationServerConfigInMemory extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
     private Environment env;
@@ -45,9 +45,6 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     @Value("classpath:schema.sql")
     private Resource schemaScript;
     
-    @Value("classpath:data.sql")
-    private Resource dataScript;
-    
     @Override
     public void configure(final AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
         oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
@@ -56,19 +53,19 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     @Override
     public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {// @formatter:off
 		clients
-				.jdbc(dataSource())
-//				.inMemory().withClient("sampleClientId").authorizedGrantTypes("implicit")
-//				.scopes("read", "write", "foo", "bar").autoApprove(false).accessTokenValiditySeconds(3600)
-//
-//				.and().withClient("fooClientIdPassword").secret("secret")
-//				.authorizedGrantTypes("password", "authorization_code", "refresh_token").scopes("foo", "read", "write")
-//				.accessTokenValiditySeconds(3600) // 1 hour
-//				.refreshTokenValiditySeconds(2592000) // 30 days
-//
-//				.and().withClient("barClientIdPassword").secret("secret")
-//				.authorizedGrantTypes("password", "authorization_code", "refresh_token").scopes("bar", "read", "write")
-//				.accessTokenValiditySeconds(3600) // 1 hour
-//				.refreshTokenValiditySeconds(2592000) // 30 days
+//				.jdbc(dataSource())
+				.inMemory().withClient("sampleClientId").authorizedGrantTypes("implicit")
+				.scopes("read", "write", "foo", "bar").autoApprove(false).accessTokenValiditySeconds(3600)
+
+				.and().withClient("fooClientIdPassword").secret("secret")
+				.authorizedGrantTypes("password", "authorization_code", "refresh_token").scopes("foo", "read", "write")
+				.accessTokenValiditySeconds(3600) // 1 hour
+				.refreshTokenValiditySeconds(2592000) // 30 days
+
+				.and().withClient("barClientIdPassword").secret("secret")
+				.authorizedGrantTypes("password", "authorization_code", "refresh_token").scopes("bar", "read", "write")
+				.accessTokenValiditySeconds(3600) // 1 hour
+				.refreshTokenValiditySeconds(2592000) // 30 days
 		;
 	} // @formatter:on
 
@@ -82,13 +79,6 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 				.tokenEnhancer(tokenEnhancerChain).authenticationManager(authenticationManager);
 		// @formatter:on
     }
-    
-//    @Autowired
-//	public void init(AuthenticationManagerBuilder auth) throws Exception {
-//		// @formatter:off
-//		auth.jdbcAuthentication().dataSource(dataSource());
-//		// @formatter:on
-//	}
 
     /*
     @Bean
@@ -132,7 +122,6 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     private DatabasePopulator databasePopulator() {
         final ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
         populator.addScript(schemaScript);
-        populator.addScript(dataScript);
         return populator;
     }
 
