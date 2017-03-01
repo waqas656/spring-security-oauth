@@ -28,16 +28,17 @@ public class OAuth2AuthorizationServerConfigInMemory extends AuthorizationServer
 
     @Override
     public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {
-		// @formatter:off
+        // @formatter:off
 		
-		clients
-				.inMemory().withClient("sampleMvcClient").secret("secret")
-				.authorizedGrantTypes("password", "authorization_code", "refresh_token")
-				.scopes("read", "write")
-				.accessTokenValiditySeconds(3600) // 1 hour
-				.refreshTokenValiditySeconds(2592000) // 30 days
-		;
-	} // @formatter:on
+        clients
+          .inMemory().withClient("sampleMvcClient").secret("secret")
+          .authorizedGrantTypes("password", "authorization_code", "refresh_token")
+          .scopes("read", "write")
+          .accessTokenValiditySeconds(3600) // 1 hour
+          .refreshTokenValiditySeconds(2592000); // 30 days
+
+        // @formatter:on
+    } 
 
     @Override
     public void configure(final AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
