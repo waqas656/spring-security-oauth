@@ -11,7 +11,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.4.2.RELEASE</version>
+		<version>1.5.1.RELEASE</version>
 		<relativePath></relativePath>
 	</parent>
 
@@ -72,7 +72,7 @@
 
 		<!-- marshalling -->
 
-		<jackson.version>2.8.1</jackson.version>
+		<jackson.version>2.8.7</jackson.version>
 
 		<!-- logging -->
 		<org.slf4j.version>1.7.12</org.slf4j.version>
