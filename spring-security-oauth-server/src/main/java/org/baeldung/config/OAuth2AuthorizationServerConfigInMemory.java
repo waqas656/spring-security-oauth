@@ -42,7 +42,7 @@ public class OAuth2AuthorizationServerConfigInMemory extends AuthorizationServer
     @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
 
-    @Value("classpath:schema.sql")
+    @Value("classpath:schema-MySql.sql")
     private Resource schemaScript;
     
     @Override
