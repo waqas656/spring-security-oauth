@@ -22,8 +22,7 @@ public class EmployeeController {
     @RequestMapping(value = "/employee")
     @ResponseBody
     public Employee getEmployee(@RequestParam String email) {
-        Employee result = employees.stream().filter(x -> email.equals(x.getEmail())).findAny().orElse(null);
-        return result;
+        return employees.stream().filter(x -> x.getEmail().equals(email)).findAny().orElse(null);
     }
 
     @RequestMapping(value = "/employee", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
