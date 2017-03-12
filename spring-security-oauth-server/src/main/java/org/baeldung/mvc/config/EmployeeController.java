@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import java.util.Optional;
 
 @Controller
 public class EmployeeController {
@@ -22,8 +23,8 @@ public class EmployeeController {
 
     @GetMapping("/employee")
     @ResponseBody
-    public Employee getEmployee(@RequestParam String email) {
-        return employees.stream().filter(x -> x.getEmail().equals(email)).findAny().orElse(null);
+    public Optional<Employee> getEmployee(@RequestParam String email) {
+        return employees.stream().filter(x -> x.getEmail().equals(email)).findAny();
     }
 
     @PostMapping(value = "/employee", consumes = MediaType.APPLICATION_JSON_VALUE)
