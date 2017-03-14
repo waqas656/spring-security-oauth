@@ -86,11 +86,6 @@
 			</exclusions>
 		</dependency>
 		
-	    <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-        </dependency>
-		
 		<dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jdk8</artifactId>	
@@ -162,14 +157,6 @@
         <profile>
             <id>mvc</id>
             <build>
-                <resources>
-                    <resource>
-                        <directory>main/resources</directory>
-                        <excludes>
-                            <exclude>schema.sql</exclude>
-                        </excludes>
-                    </resource>
-                </resources>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
