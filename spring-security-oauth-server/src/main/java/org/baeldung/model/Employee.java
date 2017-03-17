@@ -1,4 +1,4 @@
-package org.baeldung.mvc.model;
+package org.baeldung.model;
 
 public class Employee {
     private String email;
