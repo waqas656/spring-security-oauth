@@ -6,6 +6,7 @@
 - [OAuth2 for a Spring REST API – Handle the Refresh Token in AngularJS](http://www.baeldung.com/spring-security-oauth2-refresh-token-angular-js)
 - [Spring Security OAuth2 – Simple Token Revocation](http://www.baeldung.com/spring-security-oauth-revoke-tokens)
 - [OAuth2.0 and Dynamic Client Registration](http://www.baeldung.com/spring-security-oauth-dynamic-client-registration)
+- [Testing an OAuth Secured API with the Spring MVC Test Support](http://www.baeldung.com/oauth-api-testing-with-spring-mvc)
 
 ### Build the Project
 ```
@@ -28,4 +29,9 @@ mvn spring-boot:run
 - _spring-security-oauth-ui-password_ has "live" profile for live tests, in order to run it use the following command: 
 ```
 mvn clean install -Plive
+```
+
+- _spring-security-oauth-server_ has "mvc" profile for testing an OAuth-secured API with Spring MVC, in order to run it use the following command: 
+```
+mvn clean install -Pmvc
 ```
