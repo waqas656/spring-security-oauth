@@ -22,11 +22,11 @@ import org.springframework.web.context.WebApplicationContext;
 
 import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.baeldung.mvc.config.AuthorizationServerMvcApplication;
+import org.baeldung.config.AuthorizationServerApplication;
 
 @RunWith(SpringRunner.class)
 @WebAppConfiguration
-@SpringBootTest(classes = AuthorizationServerMvcApplication.class)
+@SpringBootTest(classes = AuthorizationServerApplication.class)
 public class OAuthMvcTest {
 
     @Autowired
@@ -37,7 +37,7 @@ public class OAuthMvcTest {
 
     private MockMvc mockMvc;
 
-    private static final String CLIENT_ID = "sampleMvcClient";
+    private static final String CLIENT_ID = "fooClientIdPassword";
     private static final String CLIENT_SECRET = "secret";
 
     private static final String CONTENT_TYPE = "application/json;charset=UTF-8";
