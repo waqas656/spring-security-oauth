@@ -47,12 +47,10 @@ public class TokenController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/tokens/revokeRefreshToken/{tokenId:.*}")
     @ResponseBody
-    public String revokeRefreshToken(@PathVariable String tokenId, HttpServletRequest request) {
+    public String revokeRefreshToken(@PathVariable String tokenId) {
         if (tokenStore instanceof JdbcTokenStore) {
             ((JdbcTokenStore) tokenStore).removeRefreshToken(tokenId);
         }
-		Cookie cookie = new Cookie("refreshToken","");
-		cookie.setMaxAge(0);
         return tokenId;
     }
 	
