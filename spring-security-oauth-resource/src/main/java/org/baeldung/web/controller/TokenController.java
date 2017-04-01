@@ -14,6 +14,7 @@ import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;
+import javax.servlet.http.Cookie;
 
 @Controller
 public class TokenController {
@@ -28,7 +29,7 @@ public class TokenController {
     @ResponseBody
     public String revokeToken(@PathVariable String tokenId) {
         tokenServices.revokeToken(tokenId);
-        return tokenId;
+        return "\"{token:"+tokenId+"}\"";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/tokens")
@@ -46,10 +47,39 @@ public class TokenController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/tokens/revokeRefreshToken/{tokenId:.*}")
     @ResponseBody
-    public String revokeRefreshToken(@PathVariable String tokenId) {
+    public String revokeRefreshToken(@PathVariable String tokenId, HttpServletRequest request) {
         if (tokenStore instanceof JdbcTokenStore) {
             ((JdbcTokenStore) tokenStore).removeRefreshToken(tokenId);
         }
+		Cookie cookie = new Cookie("refreshToken","");
+		cookie.setMaxAge(0);
         return tokenId;
+    }
+	
+    @RequestMapping(method = RequestMethod.POST, value = "/oauth/token/revokeRefreshTokenFromCookie")
+    @ResponseBody
+    public String revokeRefreshToken(HttpServletRequest request, HttpServletResponse response) {
+        String tokenId = extractRefreshToken(request);
+        if (tokenStore instanceof JdbcTokenStore) {
+            ((JdbcTokenStore) tokenStore).removeRefreshToken(tokenId);
+        }
+        
+		Cookie cookie = new Cookie("refreshToken","");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+		
+        return "\"{token:"+tokenId+"}\"";
+    }
+	
+    private String extractRefreshToken(HttpServletRequest req) {
+        final Cookie[] cookies = req.getCookies();
+        if (cookies != null) {
+            for (int i = 0; i < cookies.length; i++) {
+                if (cookies[i].getName().equalsIgnoreCase("refreshToken")) {
+                    return cookies[i].getValue();
+                }
+            }
+        }
+        return null;
     }
 }

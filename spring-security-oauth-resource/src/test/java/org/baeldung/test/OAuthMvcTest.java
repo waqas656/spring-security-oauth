@@ -22,13 +22,11 @@ import org.springframework.web.context.WebApplicationContext;
 
 import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.baeldung.config.AuthorizationServerApplication;
-import org.springframework.test.context.ActiveProfiles;
+import org.baeldung.config.ResourceServerApplication;
 
 @RunWith(SpringRunner.class)
 @WebAppConfiguration
-@SpringBootTest(classes = AuthorizationServerApplication.class)
-@ActiveProfiles("mvc")
+@SpringBootTest(classes = ResourceServerApplication.class)
 public class OAuthMvcTest {
 
     @Autowired
@@ -44,8 +42,8 @@ public class OAuthMvcTest {
 
     private static final String CONTENT_TYPE = "application/json;charset=UTF-8";
 
-    private static final String EMAIL = "jim@yahoo.com";
-    private static final String NAME = "Jim";
+    private static final int FOO_ID = 1;
+    private static final String URL = "localhost:8081/spring-security-oauth-server";
 
     @Before
     public void setup() {
@@ -60,8 +58,7 @@ public class OAuthMvcTest {
         params.add("password", password);
 
         // @formatter:off
-
-        ResultActions result = mockMvc.perform(post("/oauth/token")
+        ResultActions result = mockMvc.perform(post(URL+"/oauth/token")
                                .params(params)
                                .with(httpBasic(CLIENT_ID, CLIENT_SECRET))
                                .accept(CONTENT_TYPE))
@@ -78,38 +75,32 @@ public class OAuthMvcTest {
 
     @Test
     public void givenNoToken_whenGetSecureRequest_thenUnauthorized() throws Exception {
-        mockMvc.perform(get("/employee").param("email", EMAIL)).andExpect(status().isUnauthorized());
+        mockMvc.perform(get(URL+"/foos/"+FOO_ID)).andExpect(status().isUnauthorized());
     }
 
     @Test
     public void givenInvalidRole_whenGetSecureRequest_thenForbidden() throws Exception {
-        final String accessToken = obtainAccessToken("user1", "pass");
+        final String accessToken = obtainAccessToken("john", "123");
 		System.out.println("token:"+accessToken);
-        mockMvc.perform(get("/employee").header("Authorization", "Bearer " + accessToken).param("email", EMAIL)).andExpect(status().isForbidden());
+        mockMvc.perform(get(URL+"/foos/"+FOO_ID).header("Authorization", "Bearer " + accessToken)).andExpect(status().isForbidden());
     }
 
     @Test
     public void givenToken_whenPostGetSecureRequest_thenOk() throws Exception {
         final String accessToken = obtainAccessToken("admin", "nimda");
 
-        String employeeString = "{\"email\":\"" + EMAIL + "\",\"name\":\"" + NAME + "\",\"age\":30}";
-
         // @formatter:off
         
-        mockMvc.perform(post("/employee")
+        mockMvc.perform(post(URL+"/foos")
                 .header("Authorization", "Bearer " + accessToken)
-                .contentType(CONTENT_TYPE)
-                .content(employeeString)
                 .accept(CONTENT_TYPE))
                 .andExpect(status().isCreated());
 
-        mockMvc.perform(get("/employee")
-                .param("email", EMAIL)
+        mockMvc.perform(get(URL+"/foos/"+FOO_ID)
                 .header("Authorization", "Bearer " + accessToken)
                 .accept(CONTENT_TYPE))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(CONTENT_TYPE))
-                .andExpect(jsonPath("$.name", is(NAME)));
+                .andExpect(content().contentType(CONTENT_TYPE));
         
         // @formatter:on
     }
