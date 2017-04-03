@@ -29,7 +29,7 @@ public class TokenController {
     @ResponseBody
     public String revokeToken(@PathVariable String tokenId) {
         tokenServices.revokeToken(tokenId);
-        return "\"{token:"+tokenId+"}\"";
+        return "\"{token:" + tokenId + "}\"";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/tokens")
@@ -53,7 +53,7 @@ public class TokenController {
         }
         return tokenId;
     }
-	
+
     @RequestMapping(method = RequestMethod.POST, value = "/oauth/token/revokeRefreshTokenFromCookie")
     @ResponseBody
     public String revokeRefreshToken(HttpServletRequest request, HttpServletResponse response) {
@@ -61,14 +61,14 @@ public class TokenController {
         if (tokenStore instanceof JdbcTokenStore) {
             ((JdbcTokenStore) tokenStore).removeRefreshToken(tokenId);
         }
-        
-		Cookie cookie = new Cookie("refreshToken","");
+
+        Cookie cookie = new Cookie("refreshToken", "");
         cookie.setMaxAge(0);
         response.addCookie(cookie);
-		
-        return "\"{token:"+tokenId+"}\"";
+
+        return "\"{token:" + tokenId + "}\"";
     }
-	
+
     private String extractRefreshToken(HttpServletRequest req) {
         final Cookie[] cookies = req.getCookies();
         if (cookies != null) {
