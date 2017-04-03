@@ -26,6 +26,7 @@ app.controller('mainCtrl', function($scope,$resource,$http,$httpParamSerializer,
     $scope.foos = $resource("http://localhost:8082/spring-security-oauth-resource/foos/:fooId",{fooId:'@id'});
     
     $scope.organiztion = "";
+    $scope.isLoggedIn = false;
     
     $scope.getFoo = function(){
         $scope.foo = $scope.foos.get({fooId:$scope.foo.id});
@@ -43,8 +44,10 @@ app.controller('mainCtrl', function($scope,$resource,$http,$httpParamSerializer,
         if($cookies.get("access_token")){
             $http.defaults.headers.common.Authorization= 'Bearer ' + $cookies.get("access_token");
             getOrganization();
+            $scope.isLoggedIn = true;
         }else{
         	obtainAccessToken($scope.refreshData);
+            $scope.isLoggedIn = false;
         }
     }
     
@@ -56,6 +59,11 @@ app.controller('mainCtrl', function($scope,$resource,$http,$httpParamSerializer,
     $scope.refreshAccessToken = function(){
     	obtainAccessToken($scope.refreshData);
     }
+	
+    $scope.logout = function() {
+        logout();
+        removeRefreshToken();
+	}
     
     function obtainAccessToken(params){
         var req = {
@@ -91,6 +99,35 @@ app.controller('mainCtrl', function($scope,$resource,$http,$httpParamSerializer,
             $scope.organization = response.data.organization;
         }); 
     }
+	
+    function logout() {
+        var req = {
+            method: 'POST',
+            url: "http://localhost:8082/spring-security-oauth-resource/tokens/revoke/"+$cookies.get("access_token")
+        }
+        $cookies.remove("access_token");
+        $http(req).then(
+            function(data){
+            },function(){
+                console.log("error");
+            }
+        );
+    }
+	
+	function removeRefreshToken(){
+	    var req = {
+            method: 'POST',
+            url: "http://localhost:8082/spring-security-oauth-resource/oauth/token/revokeRefreshTokenFromCookie",
+        }
+        $http(req).then(
+            function(data){
+                window.location.href="login";
+            },function(){
+                console.log("error");
+                window.location.href = "index";
+            }
+        );
+	}
     
 });
 /*]]>*/

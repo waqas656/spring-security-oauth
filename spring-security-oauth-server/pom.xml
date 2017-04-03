@@ -166,7 +166,6 @@
 									<excludes>
 										<exclude>**/*LiveTest.java</exclude>
 										<exclude>**/*IntegrationTest.java</exclude>
-										
 									</excludes>
 									<includes>
 										<include>**/*MvcTest.java</include>

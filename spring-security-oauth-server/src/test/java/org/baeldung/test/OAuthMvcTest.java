@@ -23,10 +23,12 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.baeldung.config.AuthorizationServerApplication;
+import org.springframework.test.context.ActiveProfiles;
 
 @RunWith(SpringRunner.class)
 @WebAppConfiguration
 @SpringBootTest(classes = AuthorizationServerApplication.class)
+@ActiveProfiles("mvc")
 public class OAuthMvcTest {
 
     @Autowired
