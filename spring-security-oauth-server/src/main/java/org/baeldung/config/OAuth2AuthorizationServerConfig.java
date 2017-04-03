@@ -42,7 +42,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
 
-    @Value("classpath:schema-MySql.sql")
+    @Value("classpath:schema.sql")
     private Resource schemaScript;
     
     @Value("classpath:data.sql")
