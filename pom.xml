@@ -20,6 +20,8 @@
 		<module>spring-security-oauth-resource</module>
 		<module>spring-security-oauth-ui-implicit</module>
 		<module>spring-security-oauth-ui-password</module>
+		<module>spring-security-oauth-ui-implicit-angular2</module>
+		<module>spring-security-oauth-ui-password-angular2</module>
 	</modules>
 
 	<build>
