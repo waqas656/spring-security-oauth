@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import {AuthService, Foo} from './auth.service'
+import {AppService, Foo} from './app.service'
 
 @Component({
   selector: 'foo-details',
-  providers: [AuthService],  
+  providers: [AppService],  
   template: `<div class="container">
     <h1 class="col-sm-12">Foo Details</h1>
     <div class="col-sm-12">
@@ -22,7 +22,7 @@ export class FooComponent {
     public foo = new Foo(1,'sample foo');
     private foosUrl = 'http://localhost:8082/spring-security-oauth-resource/foos/';  
 
-    constructor(private _service:AuthService) {}
+    constructor(private _service:AppService) {}
 
     getFoo(){
         this._service.getResource(this.foosUrl+this.foo.id)

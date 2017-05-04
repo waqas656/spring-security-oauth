@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {AuthService} from './auth.service'
+import {AppService} from './app.service'
  
 @Component({
     selector: 'home-header',
-    providers: [AuthService],
+    providers: [AppService],
   template: `<div class="container" >
     <div class="content">
         <span>Welcome !!</span>
@@ -16,7 +16,7 @@ import {AuthService} from './auth.service'
 export class HomeComponent {
  
     constructor(
-        private _service:AuthService){}
+        private _service:AppService){}
  
     ngOnInit(){
         this._service.checkCredentials();

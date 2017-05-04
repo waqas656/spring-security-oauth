@@ -13,8 +13,9 @@ import 'rxjs/add/operator/map';
 } 
 
 @Injectable()
-export class AuthService {
- 
+export class AppService {
+  public errorMsg = ''; 
+
   constructor(
     private _router: Router, private _http: Http){}
  
@@ -28,14 +29,12 @@ export class AuthService {
     let headers = new Headers({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Basic '+btoa("fooClientIdPassword:secret")});
     let options = new RequestOptions({ headers: headers });
     console.log(params.toString());
-    this._http.post('http://localhost:8081/spring-security-oauth-server/oauth/token', params.toString(), options)
+     this._http.post('http://localhost:8081/spring-security-oauth-server/oauth/token', params.toString(), options)
     .map(res => res.json())
     .subscribe(
       data => this.saveToken(data),
-      err => console.log('Error occured'),
-      () => console.log('Logged In Successfully')
+      err => alert('Invalid Credentials')
     ); 
-    return false;
   }
 
 

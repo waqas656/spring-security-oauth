@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import {AuthService} from './auth.service'
+import {AppService} from './app.service'
 
 @Component({
   selector: 'login-form',
-  providers: [AuthService],  
-  template: `<h1>Login</h1>
-    <div class="alert alert-danger" *ngIf="errorMsg">{{errorMsg}}</div>
+  providers: [AppService],  
+  template: `
     <div class="col-sm-6">
+        <h1>Login</h1>
         <div class="col-sm-12 form-group">
              <label>Username</label>
              <input class="form-control" type="text" [(ngModel)]="loginData.username" />
@@ -22,13 +22,10 @@ import {AuthService} from './auth.service'
 })
 export class LoginComponent {
     public loginData = {username: "", password: ""};
-    public errorMsg = '';
 
-    constructor(private _service:AuthService) {}
+    constructor(private _service:AppService) {}
  
     login() {
-        if(!this._service.obtainAccessToken(this.loginData)){
-           this.errorMsg = 'Invalid Username or password';          
-        }
+        this._service.obtainAccessToken(this.loginData);
     }
 }
