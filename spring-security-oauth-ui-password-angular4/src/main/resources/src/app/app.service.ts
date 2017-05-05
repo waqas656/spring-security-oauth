@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
  
- export class Foo {
+export class Foo {
   constructor(
     public id: number,
     public name: string) { }
@@ -14,8 +14,6 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AppService {
-  public errorMsg = ''; 
-
   constructor(
     private _router: Router, private _http: Http){}
  
@@ -43,7 +41,6 @@ export class AppService {
     Cookie.set("access_token", token.access_token, expireDate);
     console.log('Obtained Access token');
     this._router.navigate(['/']);
-    return true;
   }
 
   getResource(resourceUrl) : Observable<Foo>{
