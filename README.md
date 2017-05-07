@@ -14,6 +14,8 @@ mvn clean install
 ```
 
 ### Notes
+- The `...-demo` modules are just for live workshops, so you can ignore those
+
 - This project consists of 4 main sub-modules, each sub-module is a Spring Boot Application running on specific port
     - spring-security-oauth-server       (port = 8081)
     - spring-security-oauth-resource     (port = 8082)
