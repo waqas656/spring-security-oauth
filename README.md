@@ -8,6 +8,7 @@
 - [OAuth2.0 and Dynamic Client Registration](http://www.baeldung.com/spring-security-oauth-dynamic-client-registration)
 - [Testing an OAuth Secured API with the Spring MVC Test Support](http://www.baeldung.com/oauth-api-testing-with-spring-mvc)
 - [Logout in a OAuth Secured Application](http://www.baeldung.com/logout-spring-security-oauth)
+- [Angular 4 Upgrade for Spring Security OAuth](http://www.baeldung.com/angular-4-upgrade-for-spring-security-oauth)
 
 ### Build the Project
 ```
@@ -38,3 +39,17 @@ mvn clean install -Plive
 ```
 mvn clean install -Pmvc
 ```
+- To run any of Angular4 front-end modules (_spring-security-oauth-ui-implicit-angular4_ and _spring-security-oauth-ui-password-angular4_) , we need to build the app first:
+```
+mvn clean install
+```
+Then we need to navigate to our Angular app directory:
+```
+cd src/main/resources
+```
+Finally, we will start our app:
+```
+npm start
+```
+
+
