@@ -27,8 +27,8 @@ public class CustomPostZuulFilter extends ZuulFilter {
         final RequestContext ctx = RequestContext.getCurrentContext();
         logger.info("in zuul filter " + ctx.getRequest().getRequestURI());
 
-        String requestURI = ctx.getRequest().getRequestURI();
-        String requestMethod = ctx.getRequest().getMethod();
+        final String requestURI = ctx.getRequest().getRequestURI();
+        final String requestMethod = ctx.getRequest().getMethod();
 
         try {
             final InputStream is = ctx.getResponseDataStream();
@@ -40,7 +40,7 @@ public class CustomPostZuulFilter extends ZuulFilter {
                 responseMap.remove("refresh_token");
                 responseBody = mapper.writeValueAsString(responseMap);
 
-                Cookie cookie = new Cookie("refreshToken", refreshToken);
+                final Cookie cookie = new Cookie("refreshToken", refreshToken);
                 cookie.setHttpOnly(true);
                 // cookie.setSecure(true);
                 cookie.setPath(ctx.getRequest().getContextPath() + "/oauth/token");
@@ -49,8 +49,9 @@ public class CustomPostZuulFilter extends ZuulFilter {
 				ctx.getResponse().addCookie(cookie);
                 logger.info("refresh token = " + refreshToken);
 
-            } else if (requestURI.contains("oauth/token") && requestMethod.equals("DELETE")) {
-                Cookie cookie = new Cookie("refreshToken", "");
+            }
+            if (requestURI.contains("oauth/token") && requestMethod.equals("DELETE")) {
+                final Cookie cookie = new Cookie("refreshToken", "");
                 cookie.setMaxAge(0);
                 cookie.setPath(ctx.getRequest().getContextPath() + "/oauth/token");
                 ctx.getResponse().addCookie(cookie);
