@@ -15,15 +15,6 @@
 		<relativePath></relativePath>
 	</parent>
 
-	<modules>
-		<module>spring-security-oauth-server</module>
-		<module>spring-security-oauth-resource</module>
-		<module>spring-security-oauth-ui-implicit</module>
-		<module>spring-security-oauth-ui-password</module>
-<!-- 		<module>spring-security-oauth-ui-implicit-angular4</module>
-		<module>spring-security-oauth-ui-password-angular4</module> -->
-	</modules>
-
 	<build>
 		<finalName>spring-security-oauth</finalName>
 		<pluginManagement>
@@ -68,7 +59,6 @@
 		</pluginManagement>
 	</build>
 
-
 	<properties>
 		<!-- Spring -->
 
@@ -102,5 +92,16 @@
 		<cargo-maven2-plugin.version>1.4.19</cargo-maven2-plugin.version>
 
 	</properties>
+
+
+	<modules>
+		<module>spring-security-5-oauth-resource</module>
+		<module>spring-security-oauth-resource</module>
+		
+		<module>spring-security-oauth-server</module>
+		
+		<module>spring-security-oauth-ui-implicit-angular4</module>
+		<module>spring-security-oauth-ui-password-angular4</module>
+	</modules>
 
 </project>
