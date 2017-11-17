@@ -97,12 +97,12 @@
 	<modules>
 		<module>spring-security-5-oauth-resource</module>
 		<module>spring-security-oauth-resource</module>
-		
-		<module>angularjs/spring-security-oauth-ui-implicit</module>
-		<module>angularjs/spring-security-oauth-ui-password</module>
-		
+
+		<!-- <module>angularjs/spring-security-oauth-ui-implicit</module> -->
+		<!-- <module>angularjs/spring-security-oauth-ui-password</module> -->
+
 		<module>spring-security-oauth-server</module>
-		
+
 		<!-- commented out because these don't build on Jenkins -->
 		<!-- <module>spring-security-oauth-ui-implicit-angular4</module> -->
 		<!-- <module>spring-security-oauth-ui-password-angular4</module> -->
