@@ -9,6 +9,7 @@
         <groupId>org.baeldung</groupId>
         <artifactId>spring-security-oauth</artifactId>
         <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../../</relativePath>        
     </parent>
 
     <dependencies>
