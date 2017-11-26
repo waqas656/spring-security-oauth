@@ -1,6 +1,6 @@
 package org.baeldung.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +13,14 @@ import com.jayway.restassured.response.Response;
 public class TokenRevocationLiveTest {
 
     private String refreshToken;
+
+    @Test
+    public void givenDBUser_whenRevokeToken_thenAuthorized() {
+        final String accessToken = obtainAccessToken("fooClientIdPassword", "john", "123");
+        assertNotNull(accessToken);
+    }
+
+    //
 
     private String obtainAccessToken(String clientId, String username, String password) {
         final Map<String, String> params = new HashMap<String, String>();
@@ -40,12 +48,6 @@ public class TokenRevocationLiveTest {
         params.put("client_id", clientId);
         params.put("scope", "read,write");
         final Response response = RestAssured.given().auth().preemptive().basic(clientId, "secret").and().with().params(params).when().post("http://localhost:8081/spring-security-oauth-server/oauth/authorize");
-    }
-
-    @Test
-    public void givenDBUser_whenRevokeToken_thenAuthorized() {
-        final String accessToken = obtainAccessToken("fooClientIdPassword", "john", "123");
-        assertNotNull(accessToken);
     }
 
     // @Test
