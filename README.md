@@ -53,17 +53,18 @@ You can then access the UI application - for example the module using the Passwo
 
 ## Run the Angular 4 Modules
 
-To run any of Angular4 front-end modules (_spring-security-oauth-ui-implicit-angular4_ and _spring-security-oauth-ui-password-angular4_) , we need to build the app first:
+- To run any of Angular4 front-end modules (_spring-security-oauth-ui-implicit-angular4_ and _spring-security-oauth-ui-password-angular4_) , we need to build the app first:
 ```
 mvn clean install
 ```
 
-Then we need to navigate to our Angular app directory:
+- Then we need to navigate to our Angular app directory:
 ```
 cd src/main/resources
 ```
 
-Finally, we will start our app:
+- Finally, we will start our app:
 ```
 npm start
 ```
+- Note: Angular4 modules are commented out because these don't build on Jenkins as they need npm installed, but they build properly locally
