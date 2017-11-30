@@ -1,5 +1,10 @@
 ## Spring Security OAuth
 
+If you're already a student of Learn Spring Security, you can get started diving deeper into OAuth2 with Module 10, and then Modules 12, 13, and the upcoming module 17. </br></br>
+If you're not yet a student, you can get access to the course here: http://bit.ly/github-lss
+</br></br></br>
+
+
 ## Relevant Articles: 
 - [Spring REST API + OAuth2 + AngularJS](http://www.baeldung.com/rest-api-spring-oauth2-angularjs)
 - [Using JWT with Spring Security OAuth](http://www.baeldung.com/spring-security-oauth-jwt)
