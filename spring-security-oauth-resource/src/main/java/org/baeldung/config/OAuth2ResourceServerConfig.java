@@ -31,64 +31,17 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
     @Override
     public void configure(final HttpSecurity http) throws Exception {
         // @formatter:off
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and().authorizeRequests()
-				.anyRequest().permitAll();
-		// .requestMatchers().antMatchers("/foos/**","/bars/**")
-		// .and()
-		// .authorizeRequests()
-		// .antMatchers(HttpMethod.GET,"/foos/**").access("#oauth2.hasScope('foo')
-		// and #oauth2.hasScope('read')")
-		// .antMatchers(HttpMethod.POST,"/foos/**").access("#oauth2.hasScope('foo')
-		// and #oauth2.hasScope('write')")
-		// .antMatchers(HttpMethod.GET,"/bars/**").access("#oauth2.hasScope('bar')
-		// and #oauth2.hasScope('read')")
-		// .antMatchers(HttpMethod.POST,"/bars/**").access("#oauth2.hasScope('bar')
-		// and #oauth2.hasScope('write') and hasRole('ROLE_ADMIN')")
-		;
-		// @formatter:on
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+		    .and()
+		    .authorizeRequests().anyRequest().permitAll();
+	// @formatter:on		
     }
-
-    // Remote token service
-    /*
-    @Primary
-    @Bean
-    public RemoteTokenServices tokenService() {
-        final RemoteTokenServices tokenService = new RemoteTokenServices();
-        tokenService.setCheckTokenEndpointUrl("http://localhost:8081/spring-security-oauth-server/oauth/check_token");
-        tokenService.setClientId("fooClientIdPassword");
-        tokenService.setClientSecret("secret");
-        return tokenService;
-    }
-    */
-
-    // JWT token store
 
     @Override
     public void configure(final ResourceServerSecurityConfigurer config) {
         config.tokenServices(tokenServices());
     }
 
-    /*
-    @Bean
-    public TokenStore tokenStore() {
-    return new JwtTokenStore(accessTokenConverter());
-    }
-    
-    @Bean
-    public JwtAccessTokenConverter accessTokenConverter() {
-    final JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-    // converter.setSigningKey("123");
-    final Resource resource = new ClassPathResource("public.txt");
-    String publicKey = null;
-    try {
-        publicKey = IOUtils.toString(resource.getInputStream());
-    } catch (final IOException e) {
-        throw new RuntimeException(e);
-    }
-    converter.setVerifierKey(publicKey);
-    return converter;
-    }
-    */
     @Bean
     @Primary
     public DefaultTokenServices tokenServices() {

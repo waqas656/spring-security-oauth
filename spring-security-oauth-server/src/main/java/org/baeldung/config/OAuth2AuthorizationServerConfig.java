@@ -49,61 +49,24 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 
     @Override
     public void configure(final AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-        oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+        oauthServer.tokenKeyAccess("permitAll()")
+            .checkTokenAccess("isAuthenticated()");
     }
 
     @Override
-    public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {// @formatter:off
-		clients
-				.jdbc(dataSource())
-//				.inMemory().withClient("sampleClientId").authorizedGrantTypes("implicit")
-//				.scopes("read", "write", "foo", "bar").autoApprove(false).accessTokenValiditySeconds(3600)
-//
-//				.and().withClient("fooClientIdPassword").secret("secret")
-//				.authorizedGrantTypes("password", "authorization_code", "refresh_token").scopes("foo", "read", "write")
-//				.accessTokenValiditySeconds(3600) // 1 hour
-//				.refreshTokenValiditySeconds(2592000) // 30 days
-//
-//				.and().withClient("barClientIdPassword").secret("secret")
-//				.authorizedGrantTypes("password", "authorization_code", "refresh_token").scopes("bar", "read", "write")
-//				.accessTokenValiditySeconds(3600) // 1 hour
-//				.refreshTokenValiditySeconds(2592000) // 30 days
-		;
-	} // @formatter:on
+    public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {
+        clients.jdbc(dataSource());
+    }
 
     @Override
     public void configure(final AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        // @formatter:off
-		final TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-		tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer()));
-		endpoints.tokenStore(tokenStore())
-				// .accessTokenConverter(accessTokenConverter())
-				.tokenEnhancer(tokenEnhancerChain).authenticationManager(authenticationManager);
-		// @formatter:on
+        final TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer()));
+        endpoints.tokenStore(tokenStore())
+            .tokenEnhancer(tokenEnhancerChain)
+            .authenticationManager(authenticationManager);
     }
 
-    // @Autowired
-    // public void init(AuthenticationManagerBuilder auth) throws Exception {
-//		// @formatter:off
-//		auth.jdbcAuthentication().dataSource(dataSource());
-//		// @formatter:on
-    // }
-
-    /*
-    @Bean
-    public TokenStore tokenStore() {
-    return new JwtTokenStore(accessTokenConverter());
-    }
-    
-    @Bean
-    public JwtAccessTokenConverter accessTokenConverter() {
-    final JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-    // converter.setSigningKey("123");
-    final KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("mytest.jks"), "mypass".toCharArray());
-    converter.setKeyPair(keyStoreKeyFactory.getKeyPair("mytest"));
-    return converter;
-    }
-    */
     @Bean
     @Primary
     public DefaultTokenServices tokenServices() {
