@@ -3,9 +3,13 @@ package org.baeldung.web.controller;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 
+import java.util.Map;
+
 import org.baeldung.web.dto.Foo;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +29,11 @@ public class FooController {
     @PreAuthorize("#oauth2.hasScope('foo') and #oauth2.hasScope('read')")
     @RequestMapping(method = RequestMethod.GET, value = "/foos/{id}")
     @ResponseBody
-    public Foo findById(@PathVariable final long id) {
+    public Foo findById(@PathVariable final long id, Authentication auth) {
+        OAuth2AuthenticationDetails oauthDetails = (OAuth2AuthenticationDetails) auth.getDetails();
+        Map<String, Object> details = (Map<String, Object>) oauthDetails.getDecodedDetails();
+        System.out.println("User organization is " + details.get("organization"));
+
         return new Foo(Long.parseLong(randomNumeric(2)), randomAlphabetic(4));
     }
 
