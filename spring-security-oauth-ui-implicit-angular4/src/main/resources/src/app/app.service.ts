@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import { Cookie } from 'ng2-cookies';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -23,6 +24,7 @@ export class AppService {
         this.oauthService.clientId = "sampleClientId";
         this.oauthService.scope = "read write foo bar";    
         this.oauthService.setStorage(sessionStorage);
+        this.oauthService.oidc=false;
         this.oauthService.tryLogin({});      
     }
  
