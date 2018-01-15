@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule }   from '@angular/router';
 import { OAuthModule } from 'angular-oauth2-oidc';
 
@@ -19,6 +20,7 @@ import { FooComponent } from './foo.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     OAuthModule.forRoot(),    
     RouterModule.forRoot([
      { path: '', component: HomeComponent }])
