@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Profile;
 @EnableResourceServer
 @Configuration
 @Profile("mvc")
+//this is the resource server for the Testing OAuth2 with Spring MVC article:
+//http://www.baeldung.com/oauth-api-testing-with-spring-mvc 
+//can only be accessed using the mvc profile 
 public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
