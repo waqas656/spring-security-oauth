@@ -1,6 +1,8 @@
 package org.baeldung.test;
 
 import static org.junit.Assert.assertEquals;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,9 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.response.Response;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ResourceServerApplication.class, webEnvironment = WebEnvironment.DEFINED_PORT)
