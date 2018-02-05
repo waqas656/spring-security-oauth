@@ -35,8 +35,8 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
             .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
             .and()
             .authorizeRequests()
-            .antMatchers("/swagger*", "/v2/**")
-            .access("#oauth2.hasScope('read')")
+            // .antMatchers("/swagger*", "/v2/**")
+            // .access("#oauth2.hasScope('read')")
             .anyRequest()
             .permitAll();
 
