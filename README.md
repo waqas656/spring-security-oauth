@@ -56,11 +56,17 @@ mvn clean install
 cd src/main/resources
 ```
 
+And run the command to download the dependencies:
+```
+npm install
+```
+
 - Finally, we will start our app:
 ```
 npm start
 ```
 - Note: Angular4 modules are commented out because these don't build on Jenkins as they need npm installed, but they build properly locally
+- Note for Angular version < 4.3.0: You should comment out the HttpClient and HttpClientModule import in app.module and app.service.ts. These version rely on the HttpModule.
 
 
 ## Relevant Articles: 
