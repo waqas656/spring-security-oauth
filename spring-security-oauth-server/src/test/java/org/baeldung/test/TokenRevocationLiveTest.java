@@ -3,14 +3,15 @@ package org.baeldung.test;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Test;
 
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.response.Response;
+
 
 public class TokenRevocationLiveTest {
 
@@ -32,7 +33,9 @@ public class TokenRevocationLiveTest {
         params.put("client_id", clientId);
         params.put("username", username);
         params.put("password", password);
-        return RestAssured.given().auth().preemptive().basic(clientId, "secret").and().with().params(params).when().post("http://localhost:8081/spring-security-oauth-server/oauth/token");
+        return RestAssured.given()
+            .auth().preemptive().basic(clientId, "secret").and().with().params(params)
+            .when().post("http://localhost:8081/spring-security-oauth-server/oauth/token");
         // response.jsonPath().getString("refresh_token");
         // response.jsonPath().getString("access_token")
     }

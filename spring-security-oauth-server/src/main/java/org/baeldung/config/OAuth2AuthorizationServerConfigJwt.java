@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -47,7 +48,7 @@ public class OAuth2AuthorizationServerConfigJwt extends AuthorizationServerConfi
 
             .and()
             .withClient("fooClientIdPassword")
-            .secret("secret")
+            .secret(passwordEncoder().encode("secret"))
             .authorizedGrantTypes("password", "authorization_code", "refresh_token")
             .scopes("foo", "read", "write")
             .accessTokenValiditySeconds(3600)
@@ -57,7 +58,7 @@ public class OAuth2AuthorizationServerConfigJwt extends AuthorizationServerConfi
 
             .and()
             .withClient("barClientIdPassword")
-            .secret("secret")
+            .secret(passwordEncoder().encode("secret"))
             .authorizedGrantTypes("password", "authorization_code", "refresh_token")
             .scopes("bar", "read", "write")
             .accessTokenValiditySeconds(3600)
@@ -103,4 +104,8 @@ public class OAuth2AuthorizationServerConfigJwt extends AuthorizationServerConfi
         return new CustomTokenEnhancer();
     }
 
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+            return new BCryptPasswordEncoder();
+    }
 }

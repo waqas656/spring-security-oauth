@@ -2,6 +2,8 @@ package org.baeldung.live;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,8 +11,7 @@ import java.util.Map;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.response.Response;
+
 
 public class AuthorizationLiveTest {
 
