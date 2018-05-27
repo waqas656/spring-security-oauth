@@ -80,8 +80,8 @@
 
 
 	<modules>
-		<module>spring-security-5-oauth-resource</module>
-		<module>spring-security-oauth-resource</module>
+		<module>oauth-resource-server-2</module>
+		<module>oauth-resource-server-1</module>
 
 		<module>angularjs/spring-security-oauth-ui-implicit</module> 
 		<module>angularjs/spring-security-oauth-ui-password</module> 
