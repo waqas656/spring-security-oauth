@@ -48,21 +48,28 @@ public class OAuth2AuthorizationServerConfigInMemory extends AuthorizationServer
 
     @Override
     public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {// @formatter:off
-		clients
-//				.jdbc(dataSource())
-				.inMemory().withClient("sampleClientId").authorizedGrantTypes("implicit")
-				.scopes("read", "write", "foo", "bar").autoApprove(false).accessTokenValiditySeconds(3600)
+        clients.inMemory()
+          .withClient("sampleClientId")
+          .authorizedGrantTypes("implicit")
+          .scopes("read", "write", "foo", "bar")
+          .autoApprove(false).accessTokenValiditySeconds(3600)
 
-				.and().withClient("fooClientIdPassword").secret("secret")
-				.authorizedGrantTypes("password", "authorization_code", "refresh_token").scopes("foo", "read", "write")
-				.accessTokenValiditySeconds(3600) // 1 hour
-				.refreshTokenValiditySeconds(2592000) // 30 days
+          .and()
+          .withClient("fooClientIdPassword")
+          .secret("secret")
+          .authorizedGrantTypes("password", "authorization_code", "refresh_token")
+          .scopes("foo", "read", "write")
+          .accessTokenValiditySeconds(3600) // 1 hour
+          .refreshTokenValiditySeconds(2592000) // 30 days
 
-				.and().withClient("barClientIdPassword").secret("secret")
-				.authorizedGrantTypes("password", "authorization_code", "refresh_token").scopes("bar", "read", "write")
-				.accessTokenValiditySeconds(3600) // 1 hour
-				.refreshTokenValiditySeconds(2592000) // 30 days
-		;
+          .and()
+          .withClient("barClientIdPassword")
+          .secret("secret")
+          .authorizedGrantTypes("password", "authorization_code", "refresh_token")
+          .scopes("bar", "read", "write")
+          .accessTokenValiditySeconds(3600) // 1 hour
+          .refreshTokenValiditySeconds(2592000) // 30 days
+	  ;
 	} // @formatter:on
 
     @Override
