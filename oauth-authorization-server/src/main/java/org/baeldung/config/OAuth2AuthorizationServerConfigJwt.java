@@ -55,6 +55,7 @@ public class OAuth2AuthorizationServerConfigJwt extends AuthorizationServerConfi
             // 1 hour
             .refreshTokenValiditySeconds(2592000)
             // 30 days
+            .redirectUris("xxx")
 
             .and()
             .withClient("barClientIdPassword")
@@ -64,7 +65,15 @@ public class OAuth2AuthorizationServerConfigJwt extends AuthorizationServerConfi
             .accessTokenValiditySeconds(3600)
             // 1 hour
             .refreshTokenValiditySeconds(2592000) // 30 days
+            
+             .and()
+             .withClient("testImplicitClientId")
+             .authorizedGrantTypes("implicit")
+             .scopes("read", "write", "foo", "bar")
+             .autoApprove(true)
+             .redirectUris("xxx") 
         ;
+        
     }
 
     @Bean

@@ -13,7 +13,7 @@ import org.springframework.http.MediaType;
 
 
 
-public class AuthorizationLiveTest {
+public class PasswordFlowLiveTest {
 
     @Test
     public void givenUser_whenUseFooClient_thenOkForFooResourceOnly() {
