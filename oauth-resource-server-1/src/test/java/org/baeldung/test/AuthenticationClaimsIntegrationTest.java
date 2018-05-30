@@ -18,6 +18,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
+//Before running this test make sure authorization server is running   
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ResourceServerApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)

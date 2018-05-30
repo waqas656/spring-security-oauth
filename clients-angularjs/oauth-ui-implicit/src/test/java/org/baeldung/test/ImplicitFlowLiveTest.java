@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 
+//Before running this live test make sure both authorization server and first resource server are running   
 
 
 public class ImplicitFlowLiveTest {

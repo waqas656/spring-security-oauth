@@ -16,11 +16,13 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 
+// Before running this live test make sure authorization server is running   
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ResourceServerApplication.class, webEnvironment = WebEnvironment.DEFINED_PORT)
 public class OAuth2SwaggerLiveTest {
 
-    private static final String URL_PREFIX = "http://localhost:8082/spring-security-oauth-resource";
+    private static final String URL_PREFIX = "http://localhost:8088/spring-security-oauth-resource";
     private String tokenValue = null;
 
     @Before

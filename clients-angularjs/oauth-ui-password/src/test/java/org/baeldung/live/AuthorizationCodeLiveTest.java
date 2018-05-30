@@ -13,6 +13,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 
 
+//Before running this live test make sure both authorization server and first resource server are running   
 
 public class AuthorizationCodeLiveTest {
     public final static String AUTH_SERVER = "http://localhost:8081/spring-security-oauth-server";
