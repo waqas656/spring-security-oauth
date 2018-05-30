@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ResourceServerApplication.class, webEnvironment = WebEnvironment.DEFINED_PORT)
-public class OAuth2SwaggerIntegrationTest {
+public class OAuth2SwaggerLiveTest {
 
     private static final String URL_PREFIX = "http://localhost:8082/spring-security-oauth-resource";
     private String tokenValue = null;
