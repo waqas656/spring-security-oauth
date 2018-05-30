@@ -60,9 +60,9 @@
 	</build>
 
 	<properties>
-        <oauth.version>2.3.3.RELEASE</oauth.version>
-        <jwt.version>1.0.9.RELEASE</jwt.version>
-        <zuul.version>1.4.4.RELEASE</zuul.version>
+		<oauth.version>2.3.3.RELEASE</oauth.version>
+		<jwt.version>1.0.9.RELEASE</jwt.version>
+		<zuul.version>1.4.4.RELEASE</zuul.version>
         
 		<!-- util -->
 		<commons-io.version>2.6</commons-io.version>
@@ -83,14 +83,14 @@
 		<module>oauth-resource-server-2</module>
 		<module>oauth-resource-server-1</module>
 
-		<module>angularjs/spring-security-oauth-ui-implicit</module> 
-		<module>angularjs/spring-security-oauth-ui-password</module> 
+		<module>clients-angularjs/oauth-ui-implicit</module> 
+		<module>clients-angularjs/oauth-ui-password</module> 
 
 		<module>oauth-authorization-server</module>
 
 		<!-- commented out because these don't build on Jenkins -->
-<!-- 		<module>spring-security-oauth-ui-implicit-angular4</module>
-		<module>spring-security-oauth-ui-password-angular4</module> -->
+<!-- 		<module>clients-angular4/oauth-ui-implicit-angular4</module>
+		<module>clients-angular4/oauth-ui-password-angular4</module> -->
 	</modules>
 
 </project>

@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>spring-security-oauth-ui-implicit</artifactId>
+    <artifactId>oauth-ui-implicit</artifactId>
 
-    <name>spring-security-oauth-ui-implicit</name>
+    <name>oauth-ui-implicit</name>
     <packaging>war</packaging>
 
     <parent>
@@ -52,7 +52,7 @@
     </dependencies>
     
     <build>
-        <finalName>spring-security-oauth-ui-implicit</finalName>
+        <finalName>oauth-ui-implicit</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
