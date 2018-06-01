@@ -1,4 +1,4 @@
-package org.baeldung.test;
+package org.baeldung.live;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
