@@ -17,7 +17,6 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
 //Before running this test make sure authorization server is running   
 
 @RunWith(SpringRunner.class)
@@ -47,17 +46,8 @@ public class AuthenticationClaimsIntegrationTest {
         params.put("client_id", clientId);
         params.put("username", username);
         params.put("password", password);
-        final Response response = RestAssured.given()
-            .auth()
-            .preemptive()
-            .basic(clientId, "secret")
-            .and()
-            .with()
-            .params(params)
-            .when()
-            .post("http://localhost:8081/spring-security-oauth-server/oauth/token");
-        return response.jsonPath()
-            .getString("access_token");
+        final Response response = RestAssured.given().auth().preemptive().basic(clientId, "secret").and().with().params(params).when().post("http://localhost:8081/spring-security-oauth-server/oauth/token");
+        return response.jsonPath().getString("access_token");
     }
 
 }

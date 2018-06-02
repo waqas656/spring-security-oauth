@@ -12,7 +12,6 @@ import org.junit.Test;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 
-
 //Before running this live test make sure both authorization server and first resource server are running   
 
 public class AuthorizationCodeLiveTest {
@@ -20,7 +19,7 @@ public class AuthorizationCodeLiveTest {
     public final static String RESOURCE_SERVER = "http://localhost:8082/spring-security-oauth-resource";
 
     @Test
-     public void givenUser_whenUseFooClient_thenOkForFooResourceOnly() {
+    public void givenUser_whenUseFooClient_thenOkForFooResourceOnly() {
         final String accessToken = obtainAccessTokenWithAuthorizationCode("fooClientIdPassword", "john", "123");
 
         final Response fooResponse = RestAssured.given().header("Authorization", "Bearer " + accessToken).get(RESOURCE_SERVER + "/foos/1");
@@ -31,10 +30,9 @@ public class AuthorizationCodeLiveTest {
         assertEquals(403, barResponse.getStatusCode());
     }
 
-    
     private String obtainAccessTokenWithAuthorizationCode(String clientId, String username, String password) {
         final String redirectUrl = "xxx";
-        final String authorizeUrl = AUTH_SERVER + "/oauth/authorize?response_type=code&client_id="+clientId+"&redirect_uri=" + redirectUrl;
+        final String authorizeUrl = AUTH_SERVER + "/oauth/authorize?response_type=code&client_id=" + clientId + "&redirect_uri=" + redirectUrl;
         final String tokenUrl = AUTH_SERVER + "/oauth/token";
 
         // user login
@@ -50,7 +48,7 @@ public class AuthorizationCodeLiveTest {
         params.put("scope.foo", "true");
         response = RestAssured.given().cookie("JSESSIONID", cookieValue).formParams(params).post(authorizeUrl);
         assertEquals(HttpStatus.FOUND.value(), response.getStatusCode());
-        
+
         final String location = response.getHeader(HttpHeaders.LOCATION);
         final String code = location.substring(location.indexOf("code=") + 5);
 

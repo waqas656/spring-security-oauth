@@ -32,18 +32,9 @@ public class OAuth2SwaggerLiveTest {
         params.put("client_id", "fooClientIdPassword");
         params.put("username", "john");
         params.put("password", "123");
-        final Response response = RestAssured.given()
-            .auth()
-            .preemptive()
-            .basic("fooClientIdPassword", "secret")
-            .and()
-            .with()
-            .params(params)
-            .when()
-            .post("http://localhost:8081/spring-security-oauth-server/oauth/token");
+        final Response response = RestAssured.given().auth().preemptive().basic("fooClientIdPassword", "secret").and().with().params(params).when().post("http://localhost:8081/spring-security-oauth-server/oauth/token");
 
-        tokenValue = response.jsonPath()
-            .getString("access_token");
+        tokenValue = response.jsonPath().getString("access_token");
     }
 
     @Test
@@ -51,9 +42,7 @@ public class OAuth2SwaggerLiveTest {
         Response response = RestAssured.get(URL_PREFIX + "/v2/api-docs");
         assertEquals(HttpStatus.UNAUTHORIZED.value(), response.getStatusCode());
 
-        response = RestAssured.given()
-            .header("Authorization", "Bearer " + tokenValue)
-            .get(URL_PREFIX + "/v2/api-docs");
+        response = RestAssured.given().header("Authorization", "Bearer " + tokenValue).get(URL_PREFIX + "/v2/api-docs");
         assertEquals(HttpStatus.OK.value(), response.getStatusCode());
     }
 
@@ -62,9 +51,7 @@ public class OAuth2SwaggerLiveTest {
         Response response = RestAssured.get(URL_PREFIX + "/swagger-ui.html");
         assertEquals(HttpStatus.UNAUTHORIZED.value(), response.getStatusCode());
 
-        response = RestAssured.given()
-            .header("Authorization", "Bearer " + tokenValue)
-            .get(URL_PREFIX + "/swagger-ui.html");
+        response = RestAssured.given().header("Authorization", "Bearer " + tokenValue).get(URL_PREFIX + "/swagger-ui.html");
         assertEquals(HttpStatus.OK.value(), response.getStatusCode());
     }
 

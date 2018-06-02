@@ -14,13 +14,12 @@ import org.springframework.http.HttpStatus;
 
 //Before running this live test make sure both authorization server and first resource server are running   
 
-
 public class ImplicitFlowLiveTest {
     public final static String AUTH_SERVER = "http://localhost:8081/spring-security-oauth-server";
     public final static String RESOURCE_SERVER = "http://localhost:8082/spring-security-oauth-resource";
 
     @Test
-     public void givenUser_whenUseFooClient_thenOkForFooResourceOnly() {
+    public void givenUser_whenUseFooClient_thenOkForFooResourceOnly() {
         final String accessToken = obtainAccessToken("testImplicitClientId", "john", "123");
 
         final Response fooResponse = RestAssured.given().header("Authorization", "Bearer " + accessToken).get(RESOURCE_SERVER + "/foos/1");
@@ -28,7 +27,6 @@ public class ImplicitFlowLiveTest {
         assertNotNull(fooResponse.jsonPath().get("name"));
     }
 
-    
     private String obtainAccessToken(String clientId, String username, String password) {
         final String redirectUrl = "xxx";
         final String authorizeUrl = AUTH_SERVER + "/oauth/authorize";

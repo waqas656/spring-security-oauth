@@ -11,7 +11,6 @@ import java.util.Map;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 
-
 //Before running this live test make sure both authorization server and first resource server are running   
 
 public class PasswordFlowLiveTest {
