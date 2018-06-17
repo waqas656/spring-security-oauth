@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
 import { Cookie } from 'ng2-cookies';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -18,7 +17,7 @@ export class AppService {
    public redirectUri = 'http://localhost:8089/';
 
   constructor(
-    private _router: Router, private _http: Http){}
+    private _http: Http){}
 
   retrieveToken(code){
     let params = new URLSearchParams();   
@@ -41,7 +40,7 @@ export class AppService {
     var expireDate = new Date().getTime() + (1000 * token.expires_in);
     Cookie.set("access_token", token.access_token, expireDate);
     console.log('Obtained Access token');
-    window.location = 'http://localhost:8089';
+    window.location.href = 'http://localhost:8089';
   }
 
   getResource(resourceUrl) : Observable<Foo>{
