@@ -7,12 +7,16 @@ Then, build the app using command line:
 ```
 mvn clean install
 ```
-And change directory to src/main/resources:
+
+Change directory to src/main/resources:
 ```
 cd src/main/resources
 ```
+
 Finally, run our app on port 8089:
 ```
 npm start
 ```
 
+Hit the app: 
+http://localhost:8089/
