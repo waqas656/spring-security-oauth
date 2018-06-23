@@ -23,7 +23,7 @@ import { FooComponent } from './foo.component';
     HttpClientModule,
     OAuthModule.forRoot(),    
     RouterModule.forRoot([
-     { path: '', component: HomeComponent }])
+     { path: '', component: HomeComponent , pathMatch: 'full'}])
   ],
   providers: [],
   bootstrap: [AppComponent]

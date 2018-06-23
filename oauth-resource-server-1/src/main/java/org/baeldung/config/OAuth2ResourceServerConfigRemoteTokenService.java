@@ -1,16 +1,29 @@
 package org.baeldung.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
 
-//@Configuration
-//@EnableResourceServer
+@Configuration
+@EnableResourceServer
 public class OAuth2ResourceServerConfigRemoteTokenService extends ResourceServerConfigurerAdapter {
 
+    @Value("${oauth.introspection.endpoint}")
+    private String introspectionEndpoint;
+    
+    @Value("${oauth.clientId}")
+    private String clientId;
+
+    @Value("${oauth.clientSecret}")
+    private String clientSecret;
+    
     @Override
     public void configure(final HttpSecurity http) throws Exception {
         // @formatter:off
@@ -24,10 +37,14 @@ public class OAuth2ResourceServerConfigRemoteTokenService extends ResourceServer
     @Bean
     public RemoteTokenServices tokenServices() {
         final RemoteTokenServices tokenService = new RemoteTokenServices();
-        tokenService.setCheckTokenEndpointUrl("http://localhost:8081/spring-security-oauth-server/oauth/check_token");
-        tokenService.setClientId("fooClientIdPassword");
-        tokenService.setClientSecret("secret");
+        tokenService.setCheckTokenEndpointUrl(introspectionEndpoint);
+        tokenService.setClientId(clientId);
+        tokenService.setClientSecret(clientSecret);
         return tokenService;
     }
 
+    @Override
+    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+         resources.resourceId("api://default");
+    }
 }
