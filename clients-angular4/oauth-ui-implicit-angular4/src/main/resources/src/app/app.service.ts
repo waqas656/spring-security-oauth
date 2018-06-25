@@ -16,21 +16,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 
 @Injectable()
 export class AppService {
-
-  constructor(
-    private _router: Router, private _http: Http, private oauthService: OAuthService){
-        this.oauthService.configure({
-          loginUrl: 'https://dev-883073.oktapreview.com/oauth2/default/v1/authorize',
-          redirectUri: 'http://localhost:8086/',
-          clientId: '0oafivb60b2MiD6T10h7',
-          scope: 'openid read foo',
-        });     
-        this.oauthService.setStorage(sessionStorage);
-        this.oauthService.oidc=true;
-        this.oauthService.tryLogin({});      
-    }
-
-/**  
+ 
   constructor(
     private _router: Router, private _http: Http, private oauthService: OAuthService){
         this.oauthService.loginUrl = 'http://localhost:8081/spring-security-oauth-server/oauth/authorize'; 
@@ -41,7 +27,7 @@ export class AppService {
         this.oauthService.oidc=false;
         this.oauthService.tryLogin({});      
     }
- */
+ 
   obtainAccessToken(){
       this.oauthService.initImplicitFlow();
   }
