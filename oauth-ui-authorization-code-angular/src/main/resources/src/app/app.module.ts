@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule }   from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -15,7 +15,7 @@ import { FooComponent } from './foo.component';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule.forRoot([
      { path: '', component: HomeComponent, pathMatch: 'full' }], {onSameUrlNavigation: 'reload'})
   ],

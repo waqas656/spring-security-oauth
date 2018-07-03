@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import { Cookie } from 'ng2-cookies';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -17,7 +17,7 @@ export class AppService {
    public redirectUri = 'http://localhost:8089/';
 
   constructor(
-    private _http: Http){}
+    private _http: HttpClient){}
 
   retrieveToken(code){
     let params = new URLSearchParams();   
@@ -26,10 +26,8 @@ export class AppService {
     params.append('redirect_uri', this.redirectUri);
     params.append('code',code);
 
-    let headers = new Headers({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Basic '+btoa(this.clientId+":secret")});
-    let options = new RequestOptions({ headers: headers });
-     this._http.post('http://localhost:8081/spring-security-oauth-server/oauth/token', params.toString(), options)
-    .map(res => res.json())
+    let headers = new HttpHeaders({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Basic '+btoa(this.clientId+":secret")});
+     this._http.post('http://localhost:8081/spring-security-oauth-server/oauth/token', params.toString(), { headers: headers })
     .subscribe(
       data => this.saveToken(data),
       err => alert('Invalid Credentials')
@@ -43,11 +41,9 @@ export class AppService {
     window.location.href = 'http://localhost:8089';
   }
 
-  getResource(resourceUrl) : Observable<Foo>{
-    var headers = new Headers({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Bearer '+Cookie.get('access_token')});
-    var options = new RequestOptions({ headers: headers });
-    return this._http.get(resourceUrl, options)
-                   .map((res:Response) => res.json())
+  getResource(resourceUrl) : Observable<any>{
+    var headers = new HttpHeaders({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Bearer '+Cookie.get('access_token')});
+    return this._http.get(resourceUrl, { headers: headers })
                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
