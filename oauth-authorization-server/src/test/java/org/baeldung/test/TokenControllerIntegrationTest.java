@@ -1,5 +1,14 @@
 package org.baeldung.test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+
 import org.baeldung.config.AuthorizationServerApplication;
 import org.baeldung.controller.TokenController;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -16,19 +25,8 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.IntStream;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {AuthorizationServerApplication.class,
-        TokenController.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = { AuthorizationServerApplication.class, TokenController.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 public class TokenControllerIntegrationTest {
 
@@ -66,8 +64,7 @@ public class TokenControllerIntegrationTest {
 
     @Test
     public void shouldReturnNotEmptyListOfTokens() throws Exception {
-        when(tokenStore.findTokensByClientId("sampleClientId"))
-                .thenReturn(generateTokens(1));
+        when(tokenStore.findTokensByClientId("sampleClientId")).thenReturn(generateTokens(1));
 
         List<String> tokens = retrieveTokens();
 
@@ -76,26 +73,21 @@ public class TokenControllerIntegrationTest {
 
     @Test
     public void shouldReturnListOfTokens() throws Exception {
-        when(tokenStore.findTokensByClientId("sampleClientId"))
-                .thenReturn(generateTokens(10));
+        when(tokenStore.findTokensByClientId("sampleClientId")).thenReturn(generateTokens(10));
 
         List<String> tokens = retrieveTokens();
 
         assertThat(tokens).hasSize(10);
     }
 
-
     private List<String> retrieveTokens() throws Exception {
-        return mapper.readValue(mockMvc.perform(get("/tokens"))
-                .andExpect(status().isOk())
-                .andReturn().getResponse().getContentAsString(), new TypeReference<List<String>>() {
+        return mapper.readValue(mockMvc.perform(get("/tokens")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), new TypeReference<List<String>>() {
         });
     }
 
     private List<OAuth2AccessToken> generateTokens(int count) {
         List<OAuth2AccessToken> result = new ArrayList<>();
-        IntStream.range(0, count)
-                .forEach(n -> result.add(new DefaultOAuth2AccessToken("token" + n)));
+        IntStream.range(0, count).forEach(n -> result.add(new DefaultOAuth2AccessToken("token" + n)));
         return result;
     }
 }
