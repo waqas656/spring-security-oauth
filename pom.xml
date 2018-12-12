@@ -87,6 +87,7 @@
 		<module>clients-angularjs/oauth-ui-password</module>
 
 		<module>oauth-authorization-server</module>
+                <module>oauth-zuul-gateway</module>
 
 		<!-- commented out because these don't build on Jenkins -->
 		<!-- <module>clients-angular4/oauth-ui-implicit-angular4</module> <module>clients-angular4/oauth-ui-password-angular4</module> -->
