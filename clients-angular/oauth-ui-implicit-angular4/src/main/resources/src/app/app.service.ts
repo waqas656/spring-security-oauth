@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import { Cookie } from 'ng2-cookies';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -18,13 +17,15 @@ import { OAuthService } from 'angular-oauth2-oidc';
 export class AppService {
  
   constructor(
-    private _router: Router, private _http: Http, private oauthService: OAuthService){
-        this.oauthService.loginUrl = 'http://localhost:8081/spring-security-oauth-server/oauth/authorize'; 
-        this.oauthService.redirectUri = 'http://localhost:8086/';
-        this.oauthService.clientId = "sampleClientId";
-        this.oauthService.scope = "read write foo bar";    
+    private _router: Router, private _http: HttpClient, private oauthService: OAuthService){
+        this.oauthService.configure({
+            loginUrl: 'http://localhost:8081/spring-security-oauth-server/oauth/authorize',
+            redirectUri: 'http://localhost:8086/',
+            clientId: 'sampleClientId',
+            scope: 'read write foo bar',
+            oidc: false
+        })
         this.oauthService.setStorage(sessionStorage);
-        this.oauthService.oidc=false;
         this.oauthService.tryLogin({});      
     }
  
@@ -32,11 +33,9 @@ export class AppService {
       this.oauthService.initImplicitFlow();
   }
 
-  getResource(resourceUrl) : Observable<Foo>{
-    var headers = new Headers({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Bearer '+this.oauthService.getAccessToken()});
-    var options = new RequestOptions({ headers: headers });
-    return this._http.get(resourceUrl, options)
-                   .map((res:Response) => res.json())
+  getResource(resourceUrl) : Observable<any>{
+    var headers = new HttpHeaders({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Bearer '+this.oauthService.getAccessToken()});
+    return this._http.get(resourceUrl, { headers: headers })
                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
