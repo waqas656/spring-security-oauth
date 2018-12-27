@@ -22,8 +22,6 @@ public class GatewayConfiguration extends ResourceServerConfigurerAdapter {
         http.authorizeRequests().
             antMatchers("/oauth/**").
             permitAll().
-            and().
-            authorizeRequests().
             antMatchers("/**").
             authenticated();
     }
