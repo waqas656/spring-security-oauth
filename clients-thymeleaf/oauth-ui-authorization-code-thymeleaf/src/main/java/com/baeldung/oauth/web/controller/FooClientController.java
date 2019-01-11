@@ -11,21 +11,21 @@ import org.springframework.web.client.RestTemplate;
 import com.baeldung.oauth.web.dto.Foo;
 
 @Controller
-public class FooController {
+public class FooClientController {
 
     @Autowired
     private RestTemplate restTemplate;
 
     @GetMapping("/foos/{id}")
     public String getFooResource(@PathVariable long id, Model model) {
-        Foo foo = restTemplate.getForEntity("http://localhost:8088/spring-security-oauth-resource/foos/" + id, Foo.class).getBody();
+        Foo foo = restTemplate.getForEntity("http://localhost:8082/spring-security-oauth-resource/foos/" + id, Foo.class).getBody();
         model.addAttribute("foo", foo);
         return "foo";
     }
     
     @PostMapping("/foos")
     public String addNewFoo(Foo foo, Model model) {
-        Foo created = restTemplate.postForEntity("http://localhost:8088/spring-security-oauth-resource/foos/", foo, Foo.class).getBody();
+        Foo created = restTemplate.postForEntity("http://localhost:8082/spring-security-oauth-resource/foos/", foo, Foo.class).getBody();
         model.addAttribute("foo", created);
         return "foo";
     }
