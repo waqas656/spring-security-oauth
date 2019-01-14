@@ -15,3 +15,4 @@ security:
     resource:
       jwt:
         key-value: 123
+

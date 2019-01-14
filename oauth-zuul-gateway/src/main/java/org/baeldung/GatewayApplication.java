@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServic
 
 @EnableResourceServer
 @EnableZuulProxy
-@SpringBootApplication(exclude = {UserDetailsServiceAutoConfiguration.class})
+@SpringBootApplication
 public class GatewayApplication {
     public static void main(String[] args) {
         SpringApplication.run(GatewayApplication.class, args);
