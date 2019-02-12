@@ -59,7 +59,7 @@
 	</build>
 
 	<properties>
-		<oauth.version>2.3.3.RELEASE</oauth.version>
+		<oauth.version>2.3.4.RELEASE</oauth.version>
 		<jwt.version>1.0.9.RELEASE</jwt.version>
 		<zuul.version>1.4.4.RELEASE</zuul.version>
 		<swagger.version>2.8.0</swagger.version>
@@ -87,6 +87,7 @@
 		<module>clients-angularjs/oauth-ui-password</module>
 
 		<module>oauth-authorization-server</module>
+                <module>oauth-zuul-gateway</module>
 
 		<!-- commented out because these don't build on Jenkins -->
 		<!-- <module>clients-angular4/oauth-ui-implicit-angular4</module> <module>clients-angular4/oauth-ui-password-angular4</module> -->
