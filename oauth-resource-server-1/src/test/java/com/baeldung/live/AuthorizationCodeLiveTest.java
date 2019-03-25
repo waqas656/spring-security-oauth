@@ -2,8 +2,6 @@ package com.baeldung.live;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import io.restassured.RestAssured;
-import io.restassured.response.Response;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +9,9 @@ import java.util.Map;
 import org.junit.Test;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
 
 //Before running this live test make sure both authorization server and first resource server are running   
 
@@ -31,7 +32,7 @@ public class AuthorizationCodeLiveTest {
     }
 
     private String obtainAccessTokenWithAuthorizationCode(String clientId, String username, String password) {
-        final String redirectUrl = "xxx";
+        final String redirectUrl = "http://www.example.com";
         final String authorizeUrl = AUTH_SERVER + "/oauth/authorize?response_type=code&client_id=" + clientId + "&redirect_uri=" + redirectUrl;
         final String tokenUrl = AUTH_SERVER + "/oauth/token";
 

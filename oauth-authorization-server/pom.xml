@@ -35,12 +35,6 @@
 			<artifactId>h2</artifactId>
 		</dependency>
         
-<!--         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
- -->
 		<!-- oauth -->
 		<dependency>
 			<groupId>org.springframework.security.oauth</groupId>
