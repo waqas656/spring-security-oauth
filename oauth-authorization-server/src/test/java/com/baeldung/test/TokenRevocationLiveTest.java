@@ -3,13 +3,16 @@ package com.baeldung.test;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
-import io.restassured.RestAssured;
-import io.restassured.response.Response;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+
+// need both oauth-authorization-server and oauth-resource-server-1 to be running
 
 public class TokenRevocationLiveTest {
 
