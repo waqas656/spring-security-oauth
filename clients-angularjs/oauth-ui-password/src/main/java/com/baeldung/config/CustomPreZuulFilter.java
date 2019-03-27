@@ -1,6 +1,7 @@
 package com.baeldung.config;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Component;
 
 import com.netflix.zuul.ZuulFilter;
@@ -26,7 +26,7 @@ public class CustomPreZuulFilter extends ZuulFilter {
         logger.info("in zuul filter " + ctx.getRequest().getRequestURI());
         byte[] encoded;
         try {
-            encoded = Base64.encode("fooClientIdPassword:secret".getBytes("UTF-8"));
+            encoded = Base64.getEncoder().encode("fooClientIdPassword:secret".getBytes("UTF-8"));
             ctx.addZuulRequestHeader("Authorization", "Basic " + new String(encoded));
             logger.info("pre filter");
             logger.info(ctx.getRequest().getHeader("Authorization"));
