@@ -24,9 +24,9 @@ And, depending on what grant type you want to try out, you'll work with one of t
 - `angularjs/oauth-ui-password` (port = 8084)
 
 Other Modules: 
-- `clients-angular/oauth-ui-implicit-angular` - another version of the Implicit Grant UI Module - using Angular 6
-- `clients-angular/oauth-ui-password-angular` - another version of the Password Grant UI Module - using Angular 6
-- `clients-angular/oauth-ui-authorization-code-angular` - Authorization Code Grant UI Module - using Angular 6
+- `clients-angular/oauth-ui-implicit-angular` - another version of the Implicit Grant UI Module - using Angular 7
+- `clients-angular/oauth-ui-password-angular` - another version of the Password Grant UI Module - using Angular 7
+- `clients-angular/oauth-ui-authorization-code-angular` - Authorization Code Grant UI Module - using Angular 7
 
 Finally, you can ignore all other modules. 
 
@@ -45,9 +45,9 @@ You can then access the UI application - for example the module using the Passwo
 
 You can login using these credentials, username:john and password:123 
 
-## Run the Angular 6 Modules
+## Run the Angular 7 Modules
 
-- To run any of Angular6 front-end modules (_spring-security-oauth-ui-implicit-angular_ , _spring-security-oauth-ui-password-angular_ and _oauth-ui-authorization-code-angular_) , we need to build the app first:
+- To run any of Angular7 front-end modules (_spring-security-oauth-ui-implicit-angular_ , _spring-security-oauth-ui-password-angular_ and _oauth-ui-authorization-code-angular_) , we need to build the app first:
 ```
 mvn clean install
 ```
@@ -66,7 +66,7 @@ npm install
 ```
 npm start
 ```
-- Note: Angular6 modules are commented out because these don't build on Jenkins as they need npm installed, but they build properly locally
+- Note: Angular7 modules are commented out because these don't build on Jenkins as they need npm installed, but they build properly locally
 - Note for Angular version < 4.3.0: You should comment out the HttpClient and HttpClientModule import in app.module and app.service.ts. These version rely on the HttpModule.
 
 ## Using the JS-only SPA OAuth Client
