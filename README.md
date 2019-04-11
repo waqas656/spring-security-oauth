@@ -95,7 +95,7 @@ In this page, we can:
   * Remove resources (we actually can't accomplish this task, because the resource server requires the application to have permissions that were not included in the existing scopes)
 
 ## Relevant Articles: 
-- [Spring REST API + OAuth2 + Angular](http://www.baeldung.com/rest-api-spring-oauth2-angularjs)
+- [Spring REST API + OAuth2 + Angular](https://www.baeldung.com/rest-api-spring-oauth2-angular)
 - [Using JWT with Spring Security OAuth](http://www.baeldung.com/spring-security-oauth-jwt)
 - [OAuth2 for a Spring REST API – Handle the Refresh Token in AngularJS](http://www.baeldung.com/spring-security-oauth2-refresh-token-angular-js)
 - [Spring Security OAuth2 – Simple Token Revocation](http://www.baeldung.com/spring-security-oauth-revoke-tokens)
