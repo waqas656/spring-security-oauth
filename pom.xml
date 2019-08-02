@@ -89,6 +89,9 @@
 
 		<module>oauth-authorization-server</module>
         <module>oauth-zuul-gateway</module>
+		
+		<module>oauth-jws-jwk\oauth-authorization-server-jws-jwk</module>
+		<module>oauth-jws-jwk\oauth-resource-server-jws-jwk</module>
 
 		<!-- commented out because these don't build on Jenkins -->
 		<!-- <module>clients-angular/oauth-ui-implicit-angular</module> <module>clients-angular/oauth-ui-password-angular</module> -->
