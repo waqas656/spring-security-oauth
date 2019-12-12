@@ -1,6 +1,3 @@
-**UPDATE**: The price of "Learn Spring Security OAuth" will permanently change on the 11th of December, along with the upcoming OAuth2 material: http://bit.ly/github-lsso
-
-
 ## Spring Security OAuth
 
 I've just announced a new course, dedicated on exploring the new OAuth2 stack in Spring Security 5 - Learn Spring Security OAuth: 
