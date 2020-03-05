@@ -18,13 +18,11 @@ export class AppService {
  
   constructor(
     private _router: Router, private _http: HttpClient, private oauthService: OAuthService){
-       
-       this.oauthService.configure({
-            loginUrl: 'http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/auth',
+        this.oauthService.configure({
+            loginUrl: 'http://localhost:8081/spring-security-oauth-server/oauth/authorize',
             redirectUri: 'http://localhost:8086/',
-            clientId: 'newClient',
-            responseType: 'token',
-            scope: 'read write foo',
+            clientId: 'sampleClientId',
+            scope: 'read write foo bar',
             oidc: false
         })
         this.oauthService.setStorage(sessionStorage);
