@@ -11,16 +11,16 @@ import {AppService, Foo} from './app.service'
     </div>
     <div class="col-sm-12">
         <label class="col-sm-3">Name</label> <span>{{foo.name}}</span>
-    </div>   
+    </div>
     <div class="col-sm-12">
-        <button class="btn btn-primary" (click)="getFoo()" type="submit">Get Foo</button>        
+        <button class="btn btn-primary" (click)="getFoo()" type="submit">New Foo</button>        
     </div>
 </div>`
 })
 
 export class FooComponent {
     public foo = new Foo(1,'sample foo');
-    private foosUrl = 'http://localhost:8081/resource-server/api/foos/';  
+    private foosUrl = 'http://localhost:8082/spring-security-oauth-resource/foos/';  
 
     constructor(private _service:AppService) {}
 
