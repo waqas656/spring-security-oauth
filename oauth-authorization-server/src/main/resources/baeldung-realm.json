@@ -432,7 +432,7 @@
     "clientAuthenticatorType" : "client-secret",
     "secret" : "newClientSecret",
     "redirectUris" : [ "http://localhost:8082/new-client/login/oauth2/code/custom",
-    "http://localhost:8086/" ],
+    "http://localhost:8089/" ],
     "webOrigins" : [ ],
     "notBefore" : 0,
     "bearerOnly" : false,
