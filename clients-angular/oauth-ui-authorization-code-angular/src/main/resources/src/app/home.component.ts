@@ -30,7 +30,8 @@ export class HomeComponent {
     }
 
     login() {
-        window.location.href = 'http://localhost:8081/spring-security-oauth-server/oauth/authorize?response_type=code&client_id=' + this._service.clientId + '&redirect_uri='+ this._service.redirectUri;
+        window.location.href = 'http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/auth?response_type=code&&scope=write%20read&client_id=' + 
+          this._service.clientId + '&redirect_uri='+ this._service.redirectUri;
     }
  
     logout() {
