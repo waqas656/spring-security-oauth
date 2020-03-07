@@ -19,9 +19,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                   .hasAuthority("SCOPE_write")
                 .anyRequest()
                   .authenticated()
-              .and()
-                .oauth2ResourceServer()
-                  .jwt();
+            .and()
+              .oauth2ResourceServer()
+                .jwt();
     }//@formatter:on
 
 }
