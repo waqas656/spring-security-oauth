@@ -100,11 +100,11 @@ In this page, we can:
 
 ## Relevant Articles: 
 
-# Using Spring Security 5
+### Using Spring Security 5
 - [Spring REST API + OAuth2 + Angular](https://www.baeldung.com/rest-api-spring-oauth2-angular)
 - [Keycloak Embedded in a Spring Boot Application](https://www.baeldung.com/keycloak-embedded-in-spring-boot-app)
 
-# Using the Spring Security OAuth legacy project
+### Using the Spring Security OAuth legacy project
 - [Spring REST API + OAuth2 + Angular (legacy)](https://www.baeldung.com/rest-api-spring-oauth2-angular-legacy)
 - [Using JWT with Spring Security OAuth](http://www.baeldung.com/spring-security-oauth-jwt)
 - [OAuth2 for a Spring REST API – Handle the Refresh Token in AngularJS](http://www.baeldung.com/spring-security-oauth2-refresh-token-angular-js)
