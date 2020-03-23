@@ -26,7 +26,7 @@ public class CustomPreZuulFilter extends ZuulFilter {
         logger.info("in zuul filter " + ctx.getRequest().getRequestURI());
         byte[] encoded;
         try {
-            encoded = Base64.getEncoder().encode("fooClientIdPassword:secret".getBytes("UTF-8"));
+            encoded = Base64.getEncoder().encode("jwtClient:jwtClientSecret".getBytes("UTF-8"));
             ctx.addZuulRequestHeader("Authorization", "Basic " + new String(encoded));
             logger.info("pre filter");
             logger.info(ctx.getRequest().getHeader("Authorization"));

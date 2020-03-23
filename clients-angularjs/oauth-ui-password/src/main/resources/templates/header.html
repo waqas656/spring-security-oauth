@@ -23,7 +23,7 @@ var app = angular.module('myApp', ["ngResource","ngRoute","ngCookies","angular-j
 
 app.controller('mainCtrl', function($scope,$resource,$http,$httpParamSerializer,$cookies,jwtHelper,$timeout) {
     $scope.foo = {id:1 , name:"sample foo"};
-    $scope.foos = $resource("http://localhost:8082/spring-security-oauth-resource/foos/:fooId",{fooId:'@id'});
+    $scope.foos = $resource("http://localhost:8081/jwt-resource-server/api/foos/:fooId",{fooId:'@id'});
     
     $scope.organiztion = "";
     $scope.isLoggedIn = false;
@@ -32,7 +32,7 @@ app.controller('mainCtrl', function($scope,$resource,$http,$httpParamSerializer,
         $scope.foo = $scope.foos.get({fooId:$scope.foo.id});
     }
     
-    $scope.loginData = {grant_type:"password", username: "", password: "", client_id: "fooClientIdPassword"};
+    $scope.loginData = {grant_type:"password", username: "", password: "", client_id: "jwtClient", scope: "read write"};
     $scope.refreshData = {grant_type:"refresh_token"};
         
     var isLoginPage = window.location.href.indexOf("login") != -1;
@@ -112,7 +112,7 @@ app.controller('mainCtrl', function($scope,$resource,$http,$httpParamSerializer,
     	$scope.organization = payload.organization; */
     	
     	//JDBC
-    	 $http.get("http://localhost:8082/spring-security-oauth-resource/users/extra")
+    	 $http.get("http://localhost:8081/jwt-resource-server/user/info")
         .then(function(response) {
         	console.log(response);
             $scope.organization = response.data.organization;

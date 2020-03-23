@@ -5,7 +5,7 @@ zuul:
     oauth:
       path: /oauth/**
       sensitiveHeaders:
-      url: http://localhost:8081/spring-security-oauth-server/oauth
+      url: http://localhost:8083/auth/realms/baeldung/protocol/openid-connect
   Servlet30WrapperFilter:
     pre:
       disable:true
