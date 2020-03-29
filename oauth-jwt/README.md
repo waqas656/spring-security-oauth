@@ -11,3 +11,6 @@
    1. john@test.com / 123
    2. mike@other.com / pass
     
+### Relevant Articles:
+
+- [Using JWT with Spring Security OAuth](https://www.baeldung.com/spring-security-oauth-jwt)
