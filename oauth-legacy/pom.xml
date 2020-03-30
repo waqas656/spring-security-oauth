@@ -15,6 +15,8 @@
         <module>oauth-ui-authorization-code-angular-legacy</module>
         <module>oauth-ui-implicit-angular-legacy</module>
         <module>oauth-ui-password-angular-legacy</module>
+        <module>oauth-ui-implicit-angularjs-legacy</module>
+        <module>oauth-ui-password-angularjs-legacy</module>
     </modules>
 
 </project>
