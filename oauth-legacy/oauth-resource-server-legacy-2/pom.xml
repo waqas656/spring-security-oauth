@@ -1,14 +1,16 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>oauth-resource-server-legacy-1</artifactId>
-	<name>oauth-resource-server-legacy-1</name>
+	<artifactId>oauth-resource-server-legacy-2</artifactId>
+	<name>oauth-resource-server-legacy-2</name>
 	<packaging>war</packaging>
 
 	<parent>
 		<groupId>com.baeldung</groupId>
 		<artifactId>spring-security-oauth</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../../</relativePath>
 	</parent>
 
 	<dependencies>
@@ -22,28 +24,30 @@
 			<optional>true</optional>
 		</dependency>
 
-		<!-- jdbc token store -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-		</dependency>
-
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-        </dependency>
-
 		<!-- oauth -->
 		<dependency>
 			<groupId>org.springframework.security.oauth</groupId>
 			<artifactId>spring-security-oauth2</artifactId>
-            <version>${oauth.version}</version>
+			<version>${oauth.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-jwt</artifactId>
-            <version>${jwt.version}</version>
+			<version>${jwt.version}</version>
+		</dependency>
+
+		<!-- swagger -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger.version}</version>
 		</dependency>
 
 		<dependency>
@@ -62,31 +66,31 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-            <scope>test</scope>            
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-            <scope>test</scope>            
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>            
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
-		    <groupId>io.rest-assured</groupId>
-		    <artifactId>rest-assured</artifactId>
-		    <scope>test</scope>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<scope>test</scope>
 		</dependency>
-        
+
 	</dependencies>
 
 	<build>
-		<finalName>oauth-resource-server-legacy-1</finalName>
+		<finalName>oauth-resource-server-legacy-2</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>

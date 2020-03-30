@@ -2,7 +2,7 @@
 A simple Angular client for Authorization Code Flow to demonstrate functionality offered by JWT.
 
 ## Run the Module
-To run the application, first make sure authorization server is already running
+To run the application, first make sure authorization and resource server is already running
 Then, build the app using command line:
 ```
 mvn clean install
