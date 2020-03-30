@@ -98,25 +98,3 @@ In this page, we can:
   * Add resources (we're requested the permissions to do that when logging in. For simplicity sake, we just request the existing 'profile' scope)
   * Remove resources (we actually can't accomplish this task, because the resource server requires the application to have permissions that were not included in the existing scopes)
 
-## Relevant Articles: 
-
-### Using Spring Security 5
-- [Spring REST API + OAuth2 + Angular](https://www.baeldung.com/rest-api-spring-oauth2-angular)
-- [Keycloak Embedded in a Spring Boot Application](https://www.baeldung.com/keycloak-embedded-in-spring-boot-app)
-- [Using JWT with Spring Security OAuth](http://www.baeldung.com/spring-security-oauth-jwt)
-
-### Using the Spring Security OAuth legacy project
-- [Spring REST API + OAuth2 + Angular (using the Spring Security OAuth legacy stack)](https://www.baeldung.com/rest-api-spring-oauth2-angular-legacy)
-- [Using JWT with Spring Security OAuth (legacy stack)](http://www.baeldung.com/spring-security-oauth-jwt-legacy)
-- [OAuth2 for a Spring REST API – Handle the Refresh Token in AngularJS](http://www.baeldung.com/spring-security-oauth2-refresh-token-angular-js)
-- [Spring Security OAuth2 – Simple Token Revocation](http://www.baeldung.com/spring-security-oauth-revoke-tokens)
-- [OAuth2.0 and Dynamic Client Registration](http://www.baeldung.com/spring-security-oauth-dynamic-client-registration)
-- [Testing an OAuth Secured API with Spring MVC](http://www.baeldung.com/oauth-api-testing-with-spring-mvc)
-- [Logout in an OAuth Secured Application](http://www.baeldung.com/logout-spring-security-oauth)
-- [OAuth2 Remember Me with Refresh Token](http://www.baeldung.com/spring-security-oauth2-remember-me)
-- [Spring REST API + OAuth2 + Angular](http://www.baeldung.com/angular-4-upgrade-for-spring-security-oauth/)
-- [New in Spring Security OAuth2 – Verify Claims](http://www.baeldung.com/spring-security-oauth-2-verify-claims)
-- [Front-End App with Spring Security OAuth – Authorization Code Flow](http://www.baeldung.com/spring-security-oauth-authorization-code-flow)
-- [Setting Up Swagger 2 with a Spring REST API](https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api)
-- [Handle Security in Zuul, with OAuth2 and JWT](https://www.baeldung.com/spring-security-zuul-oauth-jwt)
-- [JWS + JWK in a Spring Security OAuth2 Application](https://www.baeldung.com/spring-security-oauth2-jws-jwk)
