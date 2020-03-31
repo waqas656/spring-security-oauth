@@ -15,24 +15,11 @@ mvn clean install
 
 
 ## Projects/Modules
-This project contains a number of modules, but here are the main ones you should focus on and run: 
-- `oauth-new/oauth-authorization-server` - the Keycloak based Authorization Server (port = 8083)
-- `oauth-new/oauth-resource-server` - the Resource Server based on new stack (port = 8081)
-- `oauth-legacy/oauth-authorization-server-legacy` - the Spring based Authorization Server (port = 8081)
-- `oauth-legacy/oauth-resource-server-legacy-1` - the Resource Server based on old stack (port = 8082)
-- `oauth-legacy/oauth-resource-server-legacy-2` - the secondary Resource Server based on old stack (port = 8088)
-
-And, depending on what grant type you want to try out, you'll work with one of these UI/Clients:  
-- `angularjs/oauth-ui-implicit` (port = 8083)
-- `angularjs/oauth-ui-password-legacy` (port = 8084)
-
-Other Modules: 
-- `oauth-new/oauth-ui-authorization-code-angular` - Authorization Code Grant UI Module - using Angular 7, hitting the new resource server
-- `oauth-legacy/oauth-ui-authorization-code-angular-legacy` - Authorization Code Grant UI Module - using Angular 7, hitting the old resource server
-- `oauth-legacy/oauth-ui-implicit-angular-legacy` - another version of the Implicit Grant UI Module - using Angular 7, hitting the old resource server
-- `oauth-legacy/oauth-ui-password-angular-legacy` - another version of the Password Grant UI Module - using Angular 7, hitting the old resource server
-
-Finally, you can ignore all other modules. 
+This project contains a number of modules, here is a quick description of what each module contains: 
+- `oauth-rest` - Authorization Server (Keycloak), Resource Server and Angular App based on the new OAuth2 stack
+- `oauth-jwt` - Authorization Server (Keycloak), Resource Server and Angular App based on the new OAuth2 stack for JWT 
+- `oauth-jws-jwk` - Authorization Server and Resource Server for JWS + JWK in a Spring Security OAuth2 Application
+- `oauth-legacy` - Authorization Server, Resource Server, Angular and AngularJS Apps for legacy Spring Security OAuth2
 
 
 

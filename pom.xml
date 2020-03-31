@@ -79,17 +79,17 @@
 	<modules>
 		<module>oauth-legacy/oauth-resource-server-legacy-2</module>
 		<module>oauth-legacy/oauth-resource-server-legacy-1</module>
-		<module>oauth-new/oauth-resource-server</module>
+		<module>oauth-rest/oauth-resource-server</module>
 		<module>oauth-jwt/jwt-resource-server</module>
 
-		<module>clients-angularjs/oauth-ui-implicit</module>
-		<module>clients-angularjs/oauth-ui-password</module>
+		<module>oauth-legacy/oauth-ui-implicit-angularjs-legacy</module>
+		<module>oauth-legacy/oauth-ui-password-angularjs-legacy</module>
         
         <module>clients-thymeleaf/oauth-ui-authorization-code-thymeleaf</module>
         <module>clients-SPA/clients-js-only-react</module>
         <module>clients-SPA/oauth-resource-server-auth0</module>
 
-		<module>oauth-new/oauth-authorization-server</module>
+		<module>oauth-rest/oauth-authorization-server</module>
 		<module>oauth-legacy/oauth-authorization-server-legacy</module>
 		<module>oauth-jwt/jwt-auth-server</module>
         <module>oauth-zuul-gateway</module>
@@ -98,7 +98,7 @@
 		<module>oauth-jws-jwk\oauth-resource-server-jws-jwk</module>
 
 		<!-- commented out because these don't build on Jenkins -->
-		<!-- <module>clients-angular/oauth-ui-implicit-angular</module> <module>clients-angular/oauth-ui-password-angular</module> -->
+		<!-- <module>oauth-legacy/oauth-ui-implicit-angular</module> <module>oauth-legacy/oauth-ui-password-angular</module> -->
 	</modules>
 
 	<profiles>
