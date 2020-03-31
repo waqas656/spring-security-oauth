@@ -17,6 +17,7 @@
         <module>oauth-ui-password-angular-legacy</module>
         <module>oauth-ui-implicit-angularjs-legacy</module>
         <module>oauth-ui-password-angularjs-legacy</module>
+        <module>oauth-zuul-gateway</module>
     </modules>
 
 </project>

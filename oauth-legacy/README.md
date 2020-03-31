@@ -13,6 +13,7 @@
 7. `oauth-ui-password-angular-legacy` - another version of the Password Grant UI Module - using Angular 7, hitting oauth-resource-server-legacy-1
 8. `oauth-ui-implicit-angularjs-legacy` - Implicit Grant UI Module - using AngularJS, hitting oauth-resource-server-legacy-1
 9. `oauth-ui-password-angularjs-legacy` - Password Grant UI Module - using AngularJS, hitting oauth-resource-server-legacy-1
+10. `oauth-zuul-gateway` - Zuul Gateway, hitting oauth-resource-server-legacy-1
 
 
 ## Relevant Articles: 
