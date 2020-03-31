@@ -85,16 +85,16 @@
 		<module>oauth-legacy/oauth-ui-implicit-angularjs-legacy</module>
 		<module>oauth-legacy/oauth-ui-password-angularjs-legacy</module>
        
-        <module>clients-SPA/clients-js-only-react</module>
-        <module>clients-SPA/oauth-resource-server-auth0</module>
+        <module>clients-SPA-legacy/clients-js-only-react-legacy</module>
+        <module>clients-SPA-legacy/oauth-resource-server-auth0-legacy</module>
 
 		<module>oauth-rest/oauth-authorization-server</module>
 		<module>oauth-legacy/oauth-authorization-server-legacy</module>
 		<module>oauth-jwt/jwt-auth-server</module>
         <module>oauth-legacy/oauth-zuul-gateway</module>
 		
-		<module>oauth-jws-jwk\oauth-authorization-server-jws-jwk</module>
-		<module>oauth-jws-jwk\oauth-resource-server-jws-jwk</module>
+		<module>oauth-jws-jwk-legacy\oauth-authorization-server-jws-jwk-legacy</module>
+		<module>oauth-jws-jwk-legacy\oauth-resource-server-jws-jwk-legacy</module>
 
 		<!-- commented out because these don't build on Jenkins -->
 		<!-- <module>oauth-legacy/oauth-ui-implicit-angular</module> <module>oauth-legacy/oauth-ui-password-angular</module> -->
