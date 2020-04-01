@@ -18,7 +18,7 @@ mvn clean install
 This project contains a number of modules, here is a quick description of what each module contains: 
 - `oauth-rest` - Authorization Server (Keycloak), Resource Server and Angular App based on the new Spring Security 5 stack
 - `oauth-jwt` - Authorization Server (Keycloak), Resource Server and Angular App based on the new Spring Security 5 stack, focused on JWT support
-- `oauth-jws-jwk` - Authorization Server and Resource Server for JWS + JWK in a Spring Security OAuth2 Application
+- `oauth-jws-jwk-legacy` - Authorization Server and Resource Server for JWS + JWK in a Spring Security OAuth2 Application
 - `oauth-legacy` - Authorization Server, Resource Server, Angular and AngularJS Apps for legacy Spring Security OAuth2
 
 
@@ -63,7 +63,7 @@ npm start
 ## Using the JS-only SPA OAuth Client
 The main purpose of these projects are to analyze how OAuth should be carried out on Javascript-only Single-Page-Applications, using the authorization_code flow with PKCE.
 
-The *SPA/clients-js-only-react* project includes a very simple Spring Boot Application serving a couple of separate Single-Page-Applications developed in React.
+The *clients-SPA-legacy/clients-js-only-react-legacy* project includes a very simple Spring Boot Application serving a couple of separate Single-Page-Applications developed in React.
 
 It includes two pages:
   * a 'Step-By-Step' guide, where we analyze explicitly each step that we need to carry out to obtain an access token and request a secured resource
@@ -78,7 +78,7 @@ After running the Spring Boot Application (a simple *mvn spring-boot:run* comman
 When prompted the login form, we might need to create a user for our Application first.
 
 ### The 'Real-Case' OAuth Client with PKCE page
-To use all the features contained in the *http://localhost:8080/pkce-realcase/index.html* page, we'll need to first start the resource server (SPA/oauth-resource-server-auth0).
+To use all the features contained in the *http://localhost:8080/pkce-realcase/index.html* page, we'll need to first start the resource server (clients-SPA-legacy/oauth-resource-server-auth0-legacy).
 
 In this page, we can:
   * List the resources in our resource server (public, no permissions needed)
