@@ -27,7 +27,7 @@ export class AppService {
     params.append('redirect_uri', this.redirectUri);
     params.append('code',code);
 
-    let headers = new HttpHeaders({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Basic '+btoa(this.clientId+":secret")});
+    let headers = new HttpHeaders({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8'});
      this._http.post('http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/token', params.toString(), { headers: headers })
     .subscribe(
       data => this.saveToken(data),
