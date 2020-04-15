@@ -14,4 +14,4 @@ cd src/main/resources
 ```
 
 Finally, run the UIApplication class and hit the app: 
-http://localhost:8080/
+http://localhost:8089/

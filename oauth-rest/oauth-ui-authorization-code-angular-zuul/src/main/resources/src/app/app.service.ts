@@ -51,7 +51,7 @@ export class AppService {
 
   logout() {
     Cookie.delete('access_token');
-    window.location.href = 'http://localhost:8080/';
+    window.location.href = 'http://localhost:8089/';
   }
 
   refreshAccessToken() {
