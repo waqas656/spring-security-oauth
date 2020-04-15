@@ -1,0 +1,28 @@
+server:
+    port: 8080
+zuul:
+  routes:
+    auth/code:
+      path: /auth/code/**
+      sensitiveHeaders:
+      url: http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/auth
+    auth/token:
+      path: /auth/token/**
+      sensitiveHeaders:
+      url: http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/token
+    auth/refresh:
+      path: /auth/refresh/**
+      sensitiveHeaders:
+      url: http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/token
+    auth/redirect:
+      path: /auth/redirect/**
+      sensitiveHeaders:
+      url: http://localhost:8080/
+    auth/resources:
+      path: /auth/resources/**
+      sensitiveHeaders:
+      url: http://localhost:8083/auth/resources/
+    
+  Servlet30WrapperFilter:
+    pre:
+      disable:true
