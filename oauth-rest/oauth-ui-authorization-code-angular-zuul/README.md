@@ -8,10 +8,5 @@ Then, build the app using command line:
 mvn clean install
 ```
 
-Change directory to src/main/resources:
-```
-cd src/main/resources
-```
-
-Finally, run the UIApplication class and hit the app: 
+To launch the Angular UI, simply start the UIApplication class and hit the app at: 
 http://localhost:8089/
