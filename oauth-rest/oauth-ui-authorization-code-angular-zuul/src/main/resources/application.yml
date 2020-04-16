@@ -1,5 +1,5 @@
 server:
-    port: 8080
+    port: 8089
 zuul:
   routes:
     auth/code:
@@ -17,7 +17,7 @@ zuul:
     auth/redirect:
       path: /auth/redirect/**
       sensitiveHeaders:
-      url: http://localhost:8080/
+      url: http://localhost:8089/
     auth/resources:
       path: /auth/resources/**
       sensitiveHeaders:
