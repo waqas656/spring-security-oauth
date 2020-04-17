@@ -20,7 +20,7 @@
 
 - [Spring REST API + OAuth2 + Angular (using the Spring Security OAuth legacy stack)](https://www.baeldung.com/rest-api-spring-oauth2-angular-legacy)
 - [Using JWT with Spring Security OAuth (legacy stack)](http://www.baeldung.com/spring-security-oauth-jwt-legacy)
-- [OAuth2 for a Spring REST API – Handle the Refresh Token in AngularJS](http://www.baeldung.com/spring-security-oauth2-refresh-token-angular-js)
+- [OAuth2 for a Spring REST API – Handle the Refresh Token in AngularJS (legacy OAuth stack)](http://www.baeldung.com/spring-security-oauth2-refresh-token-angular-js-legacy)
 - [Spring Security OAuth2 – Simple Token Revocation](http://www.baeldung.com/spring-security-oauth-revoke-tokens)
 - [OAuth2.0 and Dynamic Client Registration](http://www.baeldung.com/spring-security-oauth-dynamic-client-registration)
 - [Testing an OAuth Secured API with Spring MVC](http://www.baeldung.com/oauth-api-testing-with-spring-mvc)
