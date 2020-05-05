@@ -22,6 +22,10 @@ zuul:
       path: /auth/resources/**
       sensitiveHeaders:
       url: http://localhost:8083/auth/resources/
+    auth/refresh/revoke:
+      path: /auth/refresh/revoke/**
+      sensitiveHeaders:
+      url: http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/logout
     
   Servlet30WrapperFilter:
     pre:
