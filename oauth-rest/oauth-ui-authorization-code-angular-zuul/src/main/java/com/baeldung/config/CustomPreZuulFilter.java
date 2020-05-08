@@ -1,7 +1,6 @@
 package com.baeldung.config;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
@@ -10,9 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
-import org.springframework.cloud.netflix.zuul.filters.ZuulProperties.ZuulRoute;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.stereotype.Component;
 
@@ -23,9 +19,6 @@ import com.netflix.zuul.context.RequestContext;
 
 @Component
 public class CustomPreZuulFilter extends ZuulFilter {
-
-	@Autowired
-	private ZuulProperties zuulProperties;
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private final static String REDIRECT_URL = "http://localhost:8089/auth/redirect/";
@@ -55,12 +48,6 @@ public class CustomPreZuulFilter extends ZuulFilter {
 			try {
 				byte[] bytes;
 				if (requestURI.contains("auth/refresh/revoke")) {
-					final String proxy = (String) ctx.get(FilterConstants.PROXY_KEY);
-					final ZuulRoute zuulRoute = this.zuulProperties.getRoutes().get(proxy + "revoke");
-
-					ctx.put(FilterConstants.REQUEST_URI_KEY, "");
-					ctx.setRouteHost(new URL(zuulRoute.getUrl()));
-
 					String cookieValue = extractCookie(req, "refreshToken");
 					String formParams = createFormData(requestURI, cookieValue);
 					bytes = formParams.getBytes("UTF-8");
