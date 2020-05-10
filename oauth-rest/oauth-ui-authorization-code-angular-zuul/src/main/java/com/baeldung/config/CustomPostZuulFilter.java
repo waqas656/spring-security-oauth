@@ -36,32 +36,38 @@ public class CustomPostZuulFilter extends ZuulFilter {
 				final Cookie cookie = new Cookie("code", params.get("code").get(0));
 				cookie.setHttpOnly(true);
 				cookie.setPath(ctx.getRequest().getContextPath() + "/auth/token");
-				//cookie.setMaxAge(2592000); // 30 days
+				cookie.setMaxAge(2592000); // 30 days
 
 				ctx.getResponse().addCookie(cookie);
-				
+
 			} else if (requestURI.contains("auth/token") || requestURI.contains("auth/refresh")) {
+				if (requestURI.contains("auth/refresh/revoke")) {
 
-				final InputStream is = ctx.getResponseDataStream();
-				String responseBody = IOUtils.toString(is, "UTF-8");
-				if (responseBody.contains("refresh_token")) {
-					final Map<String, Object> responseMap = mapper.readValue(responseBody,
-							new TypeReference<Map<String, Object>>() {
-							});
-					final String refreshToken = responseMap.get("refresh_token").toString();
-					responseMap.remove("refresh_token");
-					responseBody = mapper.writeValueAsString(responseMap);
-
-					final Cookie cookie = new Cookie("refreshToken", refreshToken);
-					cookie.setHttpOnly(true);
-					cookie.setPath(ctx.getRequest().getContextPath() + "/auth/refresh");
-					cookie.setMaxAge(2592000); // 30 days
-
+					final Cookie cookie = new Cookie("refreshToken", "");
+					cookie.setMaxAge(0);
 					ctx.getResponse().addCookie(cookie);
-				}
-				ctx.setResponseBody(responseBody);
-			}
+				} else {
+					final InputStream is = ctx.getResponseDataStream();
+					String responseBody = IOUtils.toString(is, "UTF-8");
+					if (responseBody.contains("refresh_token")) {
+						final Map<String, Object> responseMap = mapper.readValue(responseBody,
+								new TypeReference<Map<String, Object>>() {
+								});
+						final String refreshToken = responseMap.get("refresh_token").toString();
+						responseMap.remove("refresh_token");
+						responseBody = mapper.writeValueAsString(responseMap);
 
+						final Cookie cookie = new Cookie("refreshToken", refreshToken);
+						cookie.setHttpOnly(true);
+						cookie.setPath(ctx.getRequest().getContextPath() + "/auth/refresh");
+						cookie.setMaxAge(2592000); // 30 days
+
+						ctx.getResponse().addCookie(cookie);
+					}
+					ctx.setResponseBody(responseBody);
+				}
+
+			}
 		} catch (Exception e) {
 			logger.error("Error occured in zuul post filter", e);
 		}

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.stereotype.Component;
 
 import com.google.common.collect.Lists;
@@ -44,21 +45,24 @@ public class CustomPreZuulFilter extends ZuulFilter {
 
 			ctx.setRequestQueryParams(params);
 		} else if (requestURI.contains("auth/token") || requestURI.contains("auth/refresh")) {
-
 			try {
-				String cookieValue = requestURI.contains("token") ? extractCookie(req, "code")
-						: extractCookie(req, "refreshToken");
-
-				String formParams = createFormData(requestURI, cookieValue);
-
-				byte[] bytes = formParams.getBytes("UTF-8");
-
+				byte[] bytes;
+				if (requestURI.contains("auth/refresh/revoke")) {
+					String cookieValue = extractCookie(req, "refreshToken");
+					String formParams = createFormData(requestURI, cookieValue);
+					bytes = formParams.getBytes("UTF-8");
+				} else {
+					String cookieValue = requestURI.contains("token") ? extractCookie(req, "code")
+							: extractCookie(req, "refreshToken");
+					String formParams = createFormData(requestURI, cookieValue);
+					bytes = formParams.getBytes("UTF-8");
+				}
 				ctx.setRequest(new CustomHttpServletRequest(req, bytes));
-
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} 
+
+		}
 		return null;
 	}
 
@@ -75,13 +79,19 @@ public class CustomPreZuulFilter extends ZuulFilter {
 	}
 
 	private String createFormData(String requestURI, String cookieValue) {
-		String formData;
+		String formData = "";
 		if (requestURI.contains("token")) {
 			formData = String.format("grant_type=%s&client_id=%s&client_secret=%s&redirect_uri=%s&code=%s",
 					"authorization_code", CLIENT_ID, CLIENT_SECRET, REDIRECT_URL, cookieValue);
-		} else {
-			formData = String.format("grant_type=%s&client_id=%s&client_secret=%s&refresh_token=%s", "refresh_token",
-					CLIENT_ID, CLIENT_SECRET, cookieValue);
+		} else if (requestURI.contains("refresh")) {
+			if (requestURI.contains("revoke")) {
+				formData = String.format("client_id=%s&client_secret=%s&refresh_token=%s", CLIENT_ID, CLIENT_SECRET,
+						cookieValue);
+			} else {
+				formData = String.format("grant_type=%s&client_id=%s&client_secret=%s&refresh_token=%s",
+						"refresh_token", CLIENT_ID, CLIENT_SECRET, cookieValue);
+			}
+
 		}
 		return formData;
 	}
@@ -101,7 +111,7 @@ public class CustomPreZuulFilter extends ZuulFilter {
 
 	@Override
 	public int filterOrder() {
-		return 6;
+		return FilterConstants.PRE_DECORATION_FILTER_ORDER + 1;
 	}
 
 	@Override

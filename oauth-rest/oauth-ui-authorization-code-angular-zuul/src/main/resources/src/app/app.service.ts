@@ -50,8 +50,18 @@ export class AppService {
   }
 
   logout() {
-    Cookie.delete('access_token');
-    window.location.href = 'http://localhost:8089/';
+    let headers = new HttpHeaders({
+      'Content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+    });
+    
+    this._http.post('auth/refresh/revoke', {}, { headers: headers })
+      .subscribe(
+        data => {
+        	Cookie.delete('access_token');
+        	window.location.href = 'http://localhost:8089/';
+        	},
+        err => alert('Could not logout')
+      );
   }
 
   refreshAccessToken() {

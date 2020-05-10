@@ -53,7 +53,12 @@ export class AppService {
   } 
 
   logout() {
+    let token = Cookie.get('access_token');
     Cookie.delete('access_token');
-    window.location.reload();
-  }
+    let logoutURL = "http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/logout?id_token_hint="
+      + token
+      + "&post_logout_redirect_uri=" + this.redirectUri;
+
+    window.location.href = logoutURL;
+  } 
 }

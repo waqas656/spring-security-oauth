@@ -10,6 +10,10 @@ zuul:
       path: /auth/token/**
       sensitiveHeaders:
       url: http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/token
+    auth/refresh/revoke:
+      path: /auth/refresh/revoke/**
+      sensitiveHeaders:
+      url: http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/logout
     auth/refresh:
       path: /auth/refresh/**
       sensitiveHeaders:
