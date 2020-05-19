@@ -55,7 +55,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 
     @Override
     public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.jdbc(dataSource());
+        clients.jdbc(dataSource()).passwordEncoder(passwordEncoder());
     }
 
     @Override
