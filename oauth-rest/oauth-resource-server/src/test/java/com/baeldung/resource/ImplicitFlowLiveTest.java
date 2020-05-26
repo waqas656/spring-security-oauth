@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
-//Before running this live test make sure both authorization server and first resource server are running   
+//Before running this live test make sure both authorization server and resource server are running   
 
 public class ImplicitFlowLiveTest {
 	private final static String AUTH_SERVER = "http://localhost:8083/auth/realms/baeldung/protocol/openid-connect";
@@ -42,7 +42,7 @@ public class ImplicitFlowLiveTest {
 		loginParams.put("client_id", clientId);
 		loginParams.put("response_type", "token");
 		loginParams.put("redirect_uri", REDIRECT_URL);
-		loginParams.put("scope", "oidc read write");
+		loginParams.put("scope", "read write");
 
 		// user login
 		Response response = RestAssured.given().formParams(loginParams).get(authorizeUrl);
