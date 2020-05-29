@@ -38,6 +38,7 @@ export class AppService {
   saveToken(token){
     var expireDate = new Date().getTime() + (1000 * token.expires_in);
     Cookie.set("access_token", token.access_token, expireDate);
+    Cookie.set("id_token", token.id_token, expireDate);
     console.log('Obtained Access token');
     window.location.href = 'http://localhost:8089';
   }
@@ -53,8 +54,9 @@ export class AppService {
   } 
 
   logout() {
-    let token = Cookie.get('access_token');
+    let token = Cookie.get('id_token');
     Cookie.delete('access_token');
+    Cookie.delete('id_token');
     let logoutURL = "http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/logout?id_token_hint="
       + token
       + "&post_logout_redirect_uri=" + this.redirectUri;

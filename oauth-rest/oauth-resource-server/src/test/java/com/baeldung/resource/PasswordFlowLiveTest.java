@@ -11,7 +11,7 @@ import org.junit.Test;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
-//Before running this live test make sure both authorization server and first resource server are running   
+//Before running this live test make sure both authorization server and resource server are running   
 
 public class PasswordFlowLiveTest {
 
@@ -38,7 +38,7 @@ public class PasswordFlowLiveTest {
 		params.put("client_id", clientId);
 		params.put("username", username);
 		params.put("password", password);
-		params.put("scope", "oidc read write");
+		params.put("scope", "read write");
 		final Response response = RestAssured.given().auth().preemptive().basic(clientId, CLIENT_SECRET).and()
 				.with().params(params).when().post(AUTH_SERVER + "/token");
 		return response.jsonPath().getString("access_token");
