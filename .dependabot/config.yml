@@ -142,3 +142,6 @@ update_configs:
       - match:
           dependency_name: "acorn"
           version_requirement: "6.1.1"
+      - match:
+          dependency_name: "websocket-extensions"
+          version_requirement: "0.1.3"
