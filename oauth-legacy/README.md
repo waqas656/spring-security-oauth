@@ -24,7 +24,7 @@
 - [Logout in an OAuth Secured Application (using the Spring Security OAuth legacy stack)](http://www.baeldung.com/logout-spring-security-oauth-legacy)
 - [Spring Security OAuth2 – Simple Token Revocation (using the Spring Security OAuth legacy stack)](http://www.baeldung.com/spring-security-oauth-revoke-tokens)
 - [OAuth2.0 and Dynamic Client Registration (using the Spring Security OAuth legacy stack)](http://www.baeldung.com/spring-security-oauth-dynamic-client-registration)
-- [Testing an OAuth Secured API with Spring MVC](http://www.baeldung.com/oauth-api-testing-with-spring-mvc)
+- [Testing an OAuth Secured API with Spring MVC (using the Spring Security OAuth legacy stack)](https://www.baeldung.com/oauth-api-testing-with-spring-mvc)
 - [OAuth2 Remember Me with Refresh Token (using the Spring Security OAuth legacy stack)](http://www.baeldung.com/spring-security-oauth2-remember-me)
 - [Spring REST API + OAuth2 + Angular](http://www.baeldung.com/angular-4-upgrade-for-spring-security-oauth/)
 - [New in Spring Security OAuth2 – Verify Claims](http://www.baeldung.com/spring-security-oauth-2-verify-claims)
