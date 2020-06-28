@@ -13,14 +13,14 @@ import org.springframework.http.HttpStatus;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
-//Before running this live test make sure both authorization server and resource server are running   
+//Before running this live test make sure both authorization server and resource server in this module are running   
 
 public class AuthorizationCodeLiveTest {
     public final static String AUTH_SERVER = "http://localhost:8083/auth/realms/baeldung/protocol/openid-connect";
     public final static String RESOURCE_SERVER = "http://localhost:8081/sso-resource-server"; 
-    private final static String REDIRECT_URL = "http://localhost:8082/sso-client-1/login/oauth2/code/custom";
-	private final static String CLIENT_ID = "ssoClient";
-	private final static String CLIENT_SECRET = "ssoClientSecret";
+    private final static String REDIRECT_URL = "http://localhost:8082/ui-one/login/oauth2/code/custom";
+	private final static String CLIENT_ID = "ssoClient-1";
+	private final static String CLIENT_SECRET = "ssoClientSecret-1";
 
     @Test
     public void givenUser_whenUseFooClient_thenOkForFooResourceOnly() {

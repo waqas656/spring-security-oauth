@@ -62,7 +62,8 @@
       "attributes" : { }
     } ],
     "client" : {
-      "ssoClient" : [ ],
+      "ssoClient-1" : [ ],
+      "ssoClient-2" : [ ],
       "realm-management" : [ {
         "id" : "5d00243f-ceec-4b0c-995e-d86d5b8a0ae6",
         "name" : "view-clients",
@@ -426,11 +427,11 @@
     "optionalClientScopes" : [ "address", "phone", "offline_access", "microprofile-jwt" ]
   }, {
     "id" : "b88ce206-63d6-43b6-87c9-ea09d8c02f32",
-    "clientId" : "ssoClient",
+    "clientId" : "ssoClient-1",
     "surrogateAuthRequired" : false,
     "enabled" : true,
     "clientAuthenticatorType" : "client-secret",
-    "secret" : "ssoClientSecret",
+    "secret" : "ssoClientSecret-1",
     "redirectUris" : [ "http://localhost:8082/ui-one/login/oauth2/code/custom",
     "http://localhost:8084/ui-two/login/oauth2/code/custom" ],
     "webOrigins" : [ "+" ],
@@ -465,6 +466,50 @@
     "defaultClientScopes" : [ "role_list", "profile" ],
     "optionalClientScopes" : [ "web-origins", "address", "read", "phone", "roles", "offline_access", "microprofile-jwt", "write", "email" ]
   }, {
+      "id": "87627cc9-43f9-42eb-992f-1614514943f2",
+      "clientId": "ssoClient-2",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "ssoClientSecret-2",
+      "redirectUris": [
+        "http://localhost:8084/ui-two/login/oauth2/code/custom"
+      ],
+      "webOrigins": [
+        "+"
+      ],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "publicClient": false,
+      "frontchannelLogout": false,
+      "protocol": "openid-connect",
+      "attributes": {
+        "saml.assertion.signature": "false",
+        "saml.multivalued.roles": "false",
+        "saml.force.post.binding": "false",
+        "saml.encrypt": "false",
+        "saml.server.signature": "false",
+        "saml.server.signature.keyinfo.ext": "false",
+        "exclude.session.state.from.auth.response": "false",
+        "saml_force_name_id_format": "false",
+        "saml.client.signature": "false",
+        "tls.client.certificate.bound.access.tokens": "false",
+        "saml.authnstatement": "false",
+        "display.on.consent.screen": "false",
+        "saml.onetimeuse.condition": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "defaultClientScopes" : [ "role_list", "profile" ],
+    "optionalClientScopes" : [ "web-origins", "address", "read", "phone", "roles", "offline_access", "microprofile-jwt", "write", "email" ]
+    },
+   {
     "id" : "6a4bfbd0-576d-4778-af56-56f876647355",
     "clientId" : "realm-management",
     "name" : "${client_realm-management}",

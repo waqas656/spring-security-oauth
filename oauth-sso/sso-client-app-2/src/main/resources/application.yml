@@ -4,8 +4,8 @@ spring:
       client:
         registration:
           custom:
-            client-id: ssoClient
-            client-secret: ssoClientSecret
+            client-id: ssoClient-2
+            client-secret: ssoClientSecret-2
             scope: read,write
             authorization-grant-type: authorization_code
             redirect-uri: http://localhost:8084/ui-two/login/oauth2/code/custom
