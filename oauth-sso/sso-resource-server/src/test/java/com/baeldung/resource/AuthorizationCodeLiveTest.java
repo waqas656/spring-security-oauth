@@ -16,24 +16,24 @@ import io.restassured.response.Response;
 //Before running this live test make sure both authorization server and resource server in this module are running   
 
 public class AuthorizationCodeLiveTest {
-    public final static String AUTH_SERVER = "http://localhost:8083/auth/realms/baeldung/protocol/openid-connect";
-    public final static String RESOURCE_SERVER = "http://localhost:8081/sso-resource-server"; 
-    private final static String REDIRECT_URL = "http://localhost:8082/ui-one/login/oauth2/code/custom";
+	public final static String AUTH_SERVER = "http://localhost:8083/auth/realms/baeldung/protocol/openid-connect";
+	public final static String RESOURCE_SERVER = "http://localhost:8081/sso-resource-server";
+	private final static String REDIRECT_URL = "http://localhost:8082/ui-one/login/oauth2/code/custom";
 	private final static String CLIENT_ID = "ssoClient-1";
 	private final static String CLIENT_SECRET = "ssoClientSecret-1";
 
-    @Test
-    public void givenUser_whenUseFooClient_thenOkForFooResourceOnly() {
-        final String accessToken = obtainAccessTokenWithAuthorizationCode("john@test.com", "123");
+	@Test
+	public void givenUser_whenUseFooClient_thenOkForFooResourceOnly() {
+		final String accessToken = obtainAccessTokenWithAuthorizationCode("john@test.com", "123");
 
-        final Response fooResponse = RestAssured.given().header("Authorization", "Bearer " + accessToken).get(RESOURCE_SERVER + "/api/foos/1");
-        assertEquals(200, fooResponse.getStatusCode());
-        assertNotNull(fooResponse.jsonPath().get("name"));
+		final Response fooResponse = RestAssured.given().header("Authorization", "Bearer " + accessToken)
+				.get(RESOURCE_SERVER + "/api/foos/1");
+		assertEquals(200, fooResponse.getStatusCode());
+		assertNotNull(fooResponse.jsonPath().get("name"));
 
-    }
+	}
 
-    private String obtainAccessTokenWithAuthorizationCode(String username, String password) {
-    	
+	private String obtainAccessTokenWithAuthorizationCode(String username, String password) {
 
 		String authorizeUrl = AUTH_SERVER + "/auth";
 		String tokenUrl = AUTH_SERVER + "/token";
@@ -47,9 +47,9 @@ public class AuthorizationCodeLiveTest {
 		// user login
 		Response response = RestAssured.given().formParams(loginParams).get(authorizeUrl);
 		String cookieValue = response.getCookie("AUTH_SESSION_ID");
-	
+
 		String authUrlWithCode = response.htmlPath().getString("'**'.find{node -> node.name()=='form'}*.@action");
-		
+
 		// get code
 		Map<String, String> codeParams = new HashMap<String, String>();
 		codeParams.put("username", username);
@@ -61,19 +61,18 @@ public class AuthorizationCodeLiveTest {
 
 		assertEquals(HttpStatus.FOUND.value(), response.getStatusCode());
 		final String code = location.split("#|=|&")[3];
-		
-		//get access token
+
+		// get access token
 		Map<String, String> tokenParams = new HashMap<String, String>();
 		tokenParams.put("grant_type", "authorization_code");
 		tokenParams.put("client_id", CLIENT_ID);
 		tokenParams.put("client_secret", CLIENT_SECRET);
 		tokenParams.put("redirect_uri", REDIRECT_URL);
 		tokenParams.put("code", code);
-		
-		response = RestAssured.given().formParams(tokenParams)
-				.post(tokenUrl);
-		
-		return response.jsonPath().getString("access_token");	
-    }
+
+		response = RestAssured.given().formParams(tokenParams).post(tokenUrl);
+
+		return response.jsonPath().getString("access_token");
+	}
 
 }

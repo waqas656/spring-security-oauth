@@ -12,25 +12,21 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import com.baeldung.client.web.model.FooModel;
 
-
 @Controller
 public class FooClientController {
 
-    @Value("${resourceserver.api.url}")
-    private String fooApiUrl;
+	@Value("${resourceserver.api.url}")
+	private String fooApiUrl;
 
-    @Autowired
-    private WebClient webClient;
+	@Autowired
+	private WebClient webClient;
 
-    @GetMapping("/foos")
-    public String getFoos(Model model) {
-        List<FooModel> foos = this.webClient.get()
-            .uri(fooApiUrl)
-            .retrieve()
-            .bodyToMono(new ParameterizedTypeReference<List<FooModel>>() {
-            })
-            .block();
-        model.addAttribute("foos", foos);
-        return "foos";
-    }
+	@GetMapping("/foos")
+	public String getFoos(Model model) {
+		List<FooModel> foos = this.webClient.get().uri(fooApiUrl).retrieve()
+				.bodyToMono(new ParameterizedTypeReference<List<FooModel>>() {
+				}).block();
+		model.addAttribute("foos", foos);
+		return "foos";
+	}
 }

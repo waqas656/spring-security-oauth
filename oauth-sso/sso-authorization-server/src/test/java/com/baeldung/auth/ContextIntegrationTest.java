@@ -11,9 +11,9 @@ import com.baeldung.auth.AuthorizationServerApp;
 @SpringBootTest(classes = { AuthorizationServerApp.class })
 public class ContextIntegrationTest {
 
-    @Test
-    public void whenLoadApplication_thenSuccess() {
+	@Test
+	public void whenLoadApplication_thenSuccess() {
 
-    }
+	}
 
 }

@@ -22,12 +22,11 @@ public class EmbeddedKeycloakApplication extends KeycloakApplication {
 	private static final Logger LOG = LoggerFactory.getLogger(EmbeddedKeycloakApplication.class);
 
 	static KeycloakServerProperties keycloakServerProperties;
-	
+
 	protected void loadConfig() {
-        JsonConfigProviderFactory factory = new RegularJsonConfigProviderFactory();
-        Config.init(factory.create()
-            .orElseThrow(() -> new NoSuchElementException("No value present")));
-    }
+		JsonConfigProviderFactory factory = new RegularJsonConfigProviderFactory();
+		Config.init(factory.create().orElseThrow(() -> new NoSuchElementException("No value present")));
+	}
 
 	public EmbeddedKeycloakApplication() {
 
