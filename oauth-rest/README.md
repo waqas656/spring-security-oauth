@@ -14,6 +14,7 @@
 4. There are two users registered in the Authorization Server:
    1. john@test.com / 123
    2. mike@other.com / pass
+5. The module uses the new OAuth stack with Java 13.
 
 ## Relevant Articles: 
 
