@@ -19,63 +19,68 @@ import com.baeldung.auth.config.KeycloakServerProperties.AdminUser;
 
 public class EmbeddedKeycloakApplication extends KeycloakApplication {
 
-	private static final Logger LOG = LoggerFactory.getLogger(EmbeddedKeycloakApplication.class);
+    private static final Logger LOG = LoggerFactory.getLogger(EmbeddedKeycloakApplication.class);
 
-	static KeycloakServerProperties keycloakServerProperties;
-	
-	protected void loadConfig() {
+    static KeycloakServerProperties keycloakServerProperties;
+
+    protected void loadConfig() {
         JsonConfigProviderFactory factory = new RegularJsonConfigProviderFactory();
         Config.init(factory.create()
             .orElseThrow(() -> new NoSuchElementException("No value present")));
     }
 
-	public EmbeddedKeycloakApplication() {
+    public EmbeddedKeycloakApplication() {
 
-		super();
+        super();
 
-		createMasterRealmAdminUser();
+        createMasterRealmAdminUser();
 
-		createBaeldungRealm();
-	}
+        createBaeldungRealm();
+    }
 
-	private void createMasterRealmAdminUser() {
+    private void createMasterRealmAdminUser() {
 
-		KeycloakSession session = getSessionFactory().create();
+        KeycloakSession session = getSessionFactory().create();
 
-		ApplianceBootstrap applianceBootstrap = new ApplianceBootstrap(session);
+        ApplianceBootstrap applianceBootstrap = new ApplianceBootstrap(session);
 
-		AdminUser admin = keycloakServerProperties.getAdminUser();
+        AdminUser admin = keycloakServerProperties.getAdminUser();
 
-		try {
-			session.getTransactionManager().begin();
-			applianceBootstrap.createMasterRealmUser(admin.getUsername(), admin.getPassword());
-			session.getTransactionManager().commit();
-		} catch (Exception ex) {
-			LOG.warn("Couldn't create keycloak master admin user: {}", ex.getMessage());
-			session.getTransactionManager().rollback();
-		}
+        try {
+            session.getTransactionManager()
+                .begin();
+            applianceBootstrap.createMasterRealmUser(admin.getUsername(), admin.getPassword());
+            session.getTransactionManager()
+                .commit();
+        } catch (Exception ex) {
+            LOG.warn("Couldn't create keycloak master admin user: {}", ex.getMessage());
+            session.getTransactionManager()
+                .rollback();
+        }
 
-		session.close();
-	}
+        session.close();
+    }
 
-	private void createBaeldungRealm() {
-		KeycloakSession session = getSessionFactory().create();
+    private void createBaeldungRealm() {
+        KeycloakSession session = getSessionFactory().create();
 
-		try {
-			session.getTransactionManager().begin();
+        try {
+            session.getTransactionManager()
+                .begin();
 
-			RealmManager manager = new RealmManager(session);
-			Resource lessonRealmImportFile = new ClassPathResource(keycloakServerProperties.getRealmImportFile());
+            RealmManager manager = new RealmManager(session);
+            Resource lessonRealmImportFile = new ClassPathResource(keycloakServerProperties.getRealmImportFile());
 
-			manager.importRealm(
-					JsonSerialization.readValue(lessonRealmImportFile.getInputStream(), RealmRepresentation.class));
+            manager.importRealm(JsonSerialization.readValue(lessonRealmImportFile.getInputStream(), RealmRepresentation.class));
 
-			session.getTransactionManager().commit();
-		} catch (Exception ex) {
-			LOG.warn("Failed to import Realm json file: {}", ex.getMessage());
-			session.getTransactionManager().rollback();
-		}
+            session.getTransactionManager()
+                .commit();
+        } catch (Exception ex) {
+            LOG.warn("Failed to import Realm json file: {}", ex.getMessage());
+            session.getTransactionManager()
+                .rollback();
+        }
 
-		session.close();
-	}
+        session.close();
+    }
 }

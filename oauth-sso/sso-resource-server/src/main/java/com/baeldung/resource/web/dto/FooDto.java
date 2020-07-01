@@ -15,8 +15,6 @@ public class FooDto {
         this.name = name;
     }
 
-    //
-
     public long getId() {
         return id;
     }

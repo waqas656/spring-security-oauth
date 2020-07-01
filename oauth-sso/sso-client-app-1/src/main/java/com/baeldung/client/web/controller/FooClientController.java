@@ -12,7 +12,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import com.baeldung.client.web.model.FooModel;
 
-
 @Controller
 public class FooClientController {
 
