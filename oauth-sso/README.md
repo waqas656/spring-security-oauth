@@ -20,4 +20,4 @@ And second -
 6. The module uses the new OAuth stack with Java 13.   
 
 ## Relevant Articles: 
-
+- [Simple Single Sign-On with Spring Security OAuth2](https://www.baeldung.com/sso-spring-security-oauth2)
