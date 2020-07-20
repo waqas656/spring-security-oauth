@@ -148,3 +148,7 @@ update_configs:
       - match:
           dependency_name: "npm-registry-fetch"
           version_requirement: "4.0.4"
+      - match:
+          dependency_name: "lodash"
+          version_requirement: "4.17.11"
+
