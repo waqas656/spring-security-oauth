@@ -95,8 +95,8 @@
 		<module>oauth-legacy/oauth-authorization-server-legacy</module>
 		<module>oauth-jwt/jwt-auth-server</module>
 		<module>oauth-sso/sso-authorization-server</module>
-        <module>oauth-legacy/oauth-zuul-gateway</module>
-        <module>oauth-rs/authorization-server</module>
+		<module>oauth-legacy/oauth-zuul-gateway</module>
+		<module>oauth-rs/authorization-server</module>
 		
 		<module>oauth-jws-jwk-legacy\oauth-authorization-server-jws-jwk-legacy</module>
 		<module>oauth-jws-jwk-legacy\oauth-resource-server-jws-jwk-legacy</module>

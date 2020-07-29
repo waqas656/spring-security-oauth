@@ -45,7 +45,7 @@
 			<artifactId>rest-assured</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- runtime -->
 		<dependency>
 			<groupId>com.nimbusds</groupId>
