@@ -22,7 +22,7 @@ import com.baeldung.jwt.resource.Foo;
 @RestController
 @RequestMapping(value = "/foos")
 public class FooController {
-    
+
     private static final Logger logger = LoggerFactory.getLogger(FooController.class);
 
     @GetMapping(value = "/{id}")

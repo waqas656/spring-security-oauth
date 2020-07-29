@@ -24,7 +24,7 @@ import com.baeldung.opaque.resource.Bar;
 public class BarController {
 
     private static final Logger logger = LoggerFactory.getLogger(BarController.class);
-    
+
     @GetMapping(value = "/{id}")
     public Bar findOne(@PathVariable Long id) {
         return new Bar(Long.parseLong(randomNumeric(2)), randomAlphabetic(4));
