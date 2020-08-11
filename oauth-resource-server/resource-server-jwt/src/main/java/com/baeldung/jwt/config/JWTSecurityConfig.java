@@ -11,10 +11,10 @@ public class JWTSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {// @formatter:off
         http
-          .authorizeRequests(authorizeRequests -> authorizeRequests
+          .authorizeRequests(authz -> authz
               .antMatchers(HttpMethod.GET, "/foos/**").hasAuthority("SCOPE_read")
               .antMatchers(HttpMethod.POST, "/foos").hasAuthority("SCOPE_write")
               .anyRequest().authenticated())
-          .oauth2ResourceServer(oauth2ResourceServer -> oauth2ResourceServer.jwt());
+          .oauth2ResourceServer(oauth2 -> oauth2.jwt());
 	}// @formatter:on
 }

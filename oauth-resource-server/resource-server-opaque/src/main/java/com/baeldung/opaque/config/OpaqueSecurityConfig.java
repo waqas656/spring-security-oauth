@@ -21,12 +21,12 @@ public class OpaqueSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {// @formatter:off
         http
-          .authorizeRequests(authorizeRequests -> authorizeRequests
+          .authorizeRequests(authz -> authz
               .antMatchers(HttpMethod.GET, "/bars/**").hasAuthority("SCOPE_read")
               .antMatchers(HttpMethod.POST, "/bars").hasAuthority("SCOPE_write")
               .anyRequest().authenticated())
-          .oauth2ResourceServer(oauth2ResourceServer -> oauth2ResourceServer
-              .opaqueToken(opaqueToken -> opaqueToken.introspectionUri(this.introspectionUri)
+          .oauth2ResourceServer(oauth2 -> oauth2
+              .opaqueToken(token -> token.introspectionUri(this.introspectionUri)
                   .introspectionClientCredentials(this.clientId, this.clientSecret)));// @formatter:on
     }
 }
