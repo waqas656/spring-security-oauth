@@ -20,7 +20,6 @@ public class JWTAuthorizationServerApp {
     private static final Logger LOG = LoggerFactory.getLogger(JWTAuthorizationServerApp.class);
 
     public static void main(String[] args) throws Exception {
-        //System.setProperty("keycloak.theme.dir","src/main/resources/themes");
         SpringApplication.run(JWTAuthorizationServerApp.class, args);
     }
 
