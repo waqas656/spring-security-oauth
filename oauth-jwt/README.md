@@ -17,3 +17,4 @@
 ### Relevant Articles:
 
 - [Using JWT with Spring Security OAuth](https://www.baeldung.com/spring-security-oauth-jwt)
+- [Customizing Themes for Keycloak](https://www.baeldung.com/spring-keycloak-custom-themes)
