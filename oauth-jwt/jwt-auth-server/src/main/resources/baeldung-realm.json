@@ -1024,6 +1024,7 @@
   },
   "smtpServer" : { },
   "accountTheme": "custom",
+  "loginTheme": "custom",
   "eventsEnabled" : false,
   "eventsListeners" : [ "jboss-logging" ],
   "enabledEventTypes" : [ ],
