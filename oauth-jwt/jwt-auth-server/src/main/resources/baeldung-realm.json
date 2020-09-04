@@ -302,7 +302,8 @@
     "totp" : false,
     "emailVerified" : false,
     "attributes" : {
-      "organization" : "baeldung"
+      "organization" : "baeldung",
+      "DOB" : "1984-07-01"
     },
     "credentials" : [ {
       "id" : "024b62f1-3af0-49fc-a15f-e843b72e00df",
@@ -465,6 +466,21 @@
     "fullScopeAllowed" : true,
     "nodeReRegistrationTimeout" : -1,
     "protocolMappers": [
+    	{
+          "id": "c5237a00-d3ea-4e87-9caf-5146b02d1a15",
+          "name": "DOB",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "userinfo.token.claim": "true",
+            "user.attribute": "DOB",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "DOB",
+            "jsonType.label": "String"
+          }
+        },
         {
           "id": "06e5fc8f-3553-4c75-aef4-5a4d7bb6c0d1",
           "name": "organization",
