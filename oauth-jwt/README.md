@@ -18,3 +18,6 @@
 
 - [Using JWT with Spring Security OAuth](https://www.baeldung.com/spring-security-oauth-jwt)
 - [Customizing Themes for Keycloak](https://www.baeldung.com/spring-keycloak-custom-themes)
+- [Customizing the Login Page for Keycloak](https://www.baeldung.com/keycloak-custom-login-page)
+- [Custom User Attributes with Keycloak](https://www.baeldung.com/keycloak-custom-user-attributes)
+- [Keycloak User Self-Registration](https://www.baeldung.com/keycloak-user-registration)
