@@ -1,7 +1,7 @@
 {
     "variables": [],
     "info": {
-        "name": "Keycloack",
+        "name": "Keycloak",
         "_postman_id": "02eae502-ff40-b9d0-bb2c-fa24dafe430b",
         "description": "",
         "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
