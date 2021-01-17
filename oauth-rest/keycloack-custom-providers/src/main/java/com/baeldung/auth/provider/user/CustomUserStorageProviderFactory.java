@@ -16,12 +16,12 @@ import org.slf4j.LoggerFactory;
 import static com.baeldung.auth.provider.user.CustomUserStorageProviderConstants.*;
 
 public class CustomUserStorageProviderFactory implements UserStorageProviderFactory<CustomUserStorageProvider> {
-    private static final Logger log = LoggerFactory.getLogger(CustomUserStorageProviderFactory.class);
-    
+    private static final Logger log = LoggerFactory.getLogger(CustomUserStorageProviderFactory.class);    
     protected final List<ProviderConfigProperty> configMetadata;
     
     public CustomUserStorageProviderFactory() {
         log.info("[I24] CustomUserStorageProviderFactory created");
+        
         
         // Create config metadata
         configMetadata = ProviderConfigurationBuilder.create()
@@ -105,8 +105,4 @@ public class CustomUserStorageProviderFactory implements UserStorageProviderFact
     public void onCreate(KeycloakSession session, RealmModel realm, ComponentModel model) {
         log.info("[I99] onCreate()" );
     }
-    
-    
-    
-
 }

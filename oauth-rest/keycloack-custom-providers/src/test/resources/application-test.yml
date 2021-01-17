@@ -12,4 +12,4 @@ keycloak:
     adminUser:
       username: admin
       password: admin
-    realmImportFile: baeldung-realm.json
+    realmImportFile: custom-provider-realm.json

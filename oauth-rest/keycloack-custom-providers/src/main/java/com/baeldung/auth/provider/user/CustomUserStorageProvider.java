@@ -19,24 +19,22 @@ import java.util.Map;
 import org.keycloak.component.ComponentModel;
 import org.keycloak.credential.CredentialInput;
 import org.keycloak.credential.CredentialInputValidator;
-import org.keycloak.credential.CredentialModel;
 import org.keycloak.models.GroupModel;
 import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.RealmModel;
 import org.keycloak.models.UserModel;
 import org.keycloak.models.credential.PasswordCredentialModel;
+import org.keycloak.storage.StorageId;
 import org.keycloak.storage.UserStorageProvider;
-import org.keycloak.storage.adapter.AbstractUserAdapter;
 import org.keycloak.storage.user.UserLookupProvider;
 import org.keycloak.storage.user.UserQueryProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * @author Philippe
- *
- */
-public class CustomUserStorageProvider implements UserStorageProvider, UserLookupProvider, CredentialInputValidator, UserQueryProvider {
+public class CustomUserStorageProvider implements UserStorageProvider, 
+  UserLookupProvider, 
+  CredentialInputValidator,
+  UserQueryProvider {
     
     private static final Logger log = LoggerFactory.getLogger(CustomUserStorageProvider.class);
     private KeycloakSession ksession;
@@ -55,11 +53,8 @@ public class CustomUserStorageProvider implements UserStorageProvider, UserLooku
     @Override
     public UserModel getUserById(String id, RealmModel realm) {
         log.info("[I35] getUserById({})",id);
-        String[] parts = id.split(":");
-        if ( parts != null && parts.length == 3) {
-            return getUserByUsername(parts[2],realm);
-        }
-        return null;
+        StorageId sid = new StorageId(id);
+        return getUserByUsername(sid.getExternalId(),realm);
     }
 
     @Override
@@ -122,17 +117,9 @@ public class CustomUserStorageProvider implements UserStorageProvider, UserLooku
         if( !this.supportsCredentialType(credentialInput.getType())) {
             return false;
         }
-        String username = user.getUsername();
-        if ( username == null ) {
-            // Fallback to id hack
-            String[] idParts = user.getId().split(":");
-            if ( idParts != null && idParts.length == 3 ) {
-                username = idParts[2];
-            }
-            else {
-                return false;
-            }
-        }
+        StorageId sid = new StorageId(user.getId());
+        String username = sid.getExternalId();
+        
         try ( Connection c = DbUtil.getConnection(this.model)) {
             PreparedStatement st = c.prepareStatement("select password from users where username = ?");
             st.setString(1, username);
@@ -246,34 +233,18 @@ public class CustomUserStorageProvider implements UserStorageProvider, UserLooku
         return Collections.emptyList();
     }
 
-
     
+    //------------------- Implementation 
     private UserModel mapUser(RealmModel realm, ResultSet rs) throws SQLException {
         
         DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
-        CustomUser user = new CustomUser(ksession, realm, model, rs.getString("username"));
-//        user.setEmail(rs.getString("email"));
-//        user.setFirstName(rs.getString("firstName"));
-//        user.setLastName(rs.getString("lastName"));
-//        user.setAttribute("birthDate", Arrays.asList(fmt.format(rs.getDate("birthDate"))));
+        CustomUser user = new CustomUser.Builder(ksession, realm, model, rs.getString("username"))
+          .email(rs.getString("email"))
+          .firstName(rs.getString("firstName"))
+          .lastName(rs.getString("lastName"))
+          .birthDate(rs.getDate("birthDate"))
+          .build();
         
         return user;
     }
-
-    private static class CustomUser extends AbstractUserAdapter {
-        
-        private String username;
-
-        public CustomUser(KeycloakSession session, RealmModel realm, ComponentModel storageProviderModel,String username) {
-            super(session, realm, storageProviderModel);
-            this.username = username;
-        }
-
-        @Override
-        public String getUsername() {
-            return username;
-        }
-
-    }
-
 }

@@ -66,10 +66,8 @@ public class ContextIntegration_LiveTests {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         
         log.info("Keycloak test server available at {}/auth", baseUrl);
+        log.info("To test a custom provider user login, go to {}/auth/realms/baeldung/account",baseUrl);
         
-        synchronized (this) {
-            this.wait();
-        }
     }
 
 }
