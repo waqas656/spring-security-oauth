@@ -29,9 +29,9 @@ import org.junit.jupiter.api.BeforeAll;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = { AuthorizationServerApp.class }, webEnvironment = WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
-public class ContextIntegration_LiveTests {
+public class ContextIntegrationLiveTest {
     
-    private static final Logger log = LoggerFactory.getLogger(ContextIntegration_LiveTests.class);
+    private static final Logger log = LoggerFactory.getLogger(ContextIntegrationLiveTest.class);
     
     @LocalServerPort
     int serverPort;
@@ -67,6 +67,8 @@ public class ContextIntegration_LiveTests {
         
         log.info("Keycloak test server available at {}/auth", baseUrl);
         log.info("To test a custom provider user login, go to {}/auth/realms/baeldung/account",baseUrl);
+        
+        Thread.sleep(15*60*1000); 
         
     }
 
