@@ -28,12 +28,12 @@ public class AuthorizationServerConfig {
     @Bean
     public RegisteredClientRepository registeredClientRepository() {
         RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
-                .clientId("article-client").clientSecret("secret")
-                .clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
-                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-                .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-                .redirectUri("http://localhost:8080/login/oauth2/code/articles-client-oidc")
-                .scope("articles.read").build();
+          .clientId("article-client").clientSecret("secret")
+          .clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
+          .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+          .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+          .redirectUri("http://localhost:8080/login/oauth2/code/articles-client-oidc")
+          .scope("articles.read").build();
         return new InMemoryRegisteredClientRepository(registeredClient);
     }
 
@@ -49,9 +49,9 @@ public class AuthorizationServerConfig {
         RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
         RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
         return new RSAKey.Builder(publicKey)
-                .privateKey(privateKey)
-                .keyID(UUID.randomUUID().toString())
-                .build();
+          .privateKey(privateKey)
+          .keyID(UUID.randomUUID().toString())
+          .build();
     }
 
     private static KeyPair generateRsaKey() {

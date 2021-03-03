@@ -14,13 +14,15 @@ public class ArticlesController {
     private WebClient webClient;
 
     @GetMapping(value = "/articles")
-    public String[] getArticles(@RegisteredOAuth2AuthorizedClient("articles-client-authorization-code") OAuth2AuthorizedClient authorizedClient) {
+    public String[] getArticles(
+      @RegisteredOAuth2AuthorizedClient("articles-client-authorization-code") OAuth2AuthorizedClient authorizedClient
+    ) {
         return this.webClient
-                .get()
-                .uri("http://localhost:8090/articles")
-                .attributes(oauth2AuthorizedClient(authorizedClient))
-                .retrieve()
-                .bodyToMono(String[].class)
-                .block();
+          .get()
+          .uri("http://localhost:8090/articles")
+          .attributes(oauth2AuthorizedClient(authorizedClient))
+          .retrieve()
+          .bodyToMono(String[].class)
+          .block();
     }
 }
