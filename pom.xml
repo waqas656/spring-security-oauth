@@ -82,6 +82,7 @@
 		<module>oauth-sso/sso-resource-server</module>
 		<module>oauth-resource-server/resource-server-jwt</module>
 		<module>oauth-resource-server/resource-server-opaque</module>
+		<module>oauth-authorization-server/resource-server</module>
 
 		<module>oauth-legacy/oauth-ui-implicit-angularjs-legacy</module>
 		<module>oauth-legacy/oauth-ui-password-angularjs-legacy</module>
@@ -95,12 +96,14 @@
 		<module>oauth-sso/sso-authorization-server</module>
 		<module>oauth-legacy/oauth-zuul-gateway</module>
 		<module>oauth-resource-server/authorization-server</module>
+		<module>oauth-authorization-server/authorization-server</module>
 		
 		<module>oauth-jws-jwk-legacy\oauth-authorization-server-jws-jwk-legacy</module>
 		<module>oauth-jws-jwk-legacy\oauth-resource-server-jws-jwk-legacy</module>
 		
 		<module>oauth-sso/sso-client-app-1</module>
 		<module>oauth-sso/sso-client-app-2</module>
+		<module>oauth-authorization-server/client-server</module>
 
 		<!-- commented out because these don't build on Jenkins -->
 		<!-- <module>oauth-legacy/oauth-ui-implicit-angular</module> <module>oauth-legacy/oauth-ui-password-angular</module> -->
