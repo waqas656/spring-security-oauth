@@ -1,5 +1,6 @@
 package com.baeldung.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import static org.springframework.security.oauth2.client.web.reactive.function.c
 @RestController
 public class ArticlesController {
 
+    @Autowired
     private WebClient webClient;
 
     @GetMapping(value = "/articles")
