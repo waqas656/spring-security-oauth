@@ -14,6 +14,7 @@
 8. `oauth-ui-implicit-angularjs-legacy` - Implicit Grant UI Module - using AngularJS, hitting oauth-resource-server-legacy-1
 9. `oauth-ui-password-angularjs-legacy` - Password Grant UI Module - using AngularJS, hitting oauth-resource-server-legacy-1
 10. `oauth-zuul-gateway` - Zuul Gateway, hitting oauth-resource-server-legacy-1
+11. The module uses the legacy OAuth stack with Java 8
 
 
 ## Relevant Articles: 
