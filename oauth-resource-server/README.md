@@ -12,6 +12,7 @@
    2. mike@other.com / pass
 4. `resource-server-jwt` is a Spring Boot Resource Server which exchanges JWT OAuth Tokens with the above authorization-server and dishes out /foos/**
 5. `resource-server-opaque` is a Spring Boot Resource Server which exchanges Opaque OAuth Tokens with the above authorization-server and dishes out /bars/**
+6. The module uses the new OAuth stack with Java 13
     
 ### Relevant Articles:
 
