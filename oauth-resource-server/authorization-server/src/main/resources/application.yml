@@ -12,4 +12,6 @@ keycloak:
     adminUser:
       username: bael-admin
       password: pass
-    realmImportFile: baeldung-realm.json
+    #realmImportFile: baeldung-realm.json
+    realmImportFile: feign-realm.json
+
