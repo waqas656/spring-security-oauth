@@ -1,4 +1,4 @@
-package com.baeldung.swagger2;
+package com.baeldung.config;
 
 import java.util.Arrays;
 
@@ -44,6 +44,7 @@ public class SwaggerConfig {
         return SecurityConfigurationBuilder.builder()
         		.clientId(CLIENT_ID)
         		.clientSecret(CLIENT_SECRET)
+        		.scopeSeparator(" ")
         		.useBasicAuthenticationWithAccessCodeGrant(true)
         		.build();
     }
