@@ -5,13 +5,12 @@
 	<artifactId>oauth-ui-authorization-code-angular</artifactId>
 
 	<name>oauth-ui-authorization-code-angular</name>
-	<packaging>war</packaging>
+	<packaging>pom</packaging>
 
 	<parent>
 		<groupId>com.baeldung</groupId>
-		<artifactId>spring-security-oauth</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-		<relativePath>../../</relativePath>
+		<artifactId>oauth-rest</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
 	</parent>
 
 	<build>
