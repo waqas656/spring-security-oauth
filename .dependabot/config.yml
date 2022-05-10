@@ -150,13 +150,23 @@ update_configs:
           version_requirement: "4.0.4"
       - match:
           dependency_name: "lodash"
-          version_requirement: "4.17.11"
+          version_requirement: "4.17.15"
       - match:
           dependency_name: "url-parse"
-          version_requirement: "1.4.4"
+          version_requirement: "1.4.7"
       - match:
           dependency_name: "follow-redirects"
           version_requirement: "1.7.0"
       - match:
           dependency_name: "shelljs"
           version_requirement: "0.8.3"
+      - match:
+          dependency_name: "async"
+          version_requirement: "2.6.3"
+  - package_manager: "java:maven"
+    directory: "/"
+    update_schedule: "daily"
+    ignored_updates:
+      - match:
+          dependency_name: "org.springframework:spring-webflux"
+          version_requirement: "5.3.9"
