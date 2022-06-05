@@ -1,5 +1,8 @@
 package com.baeldung.auth.config;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import javax.naming.CompositeName;
 import javax.naming.InitialContext;
 import javax.naming.Name;
@@ -10,6 +13,8 @@ import javax.sql.DataSource;
 
 import org.jboss.resteasy.plugins.server.servlet.HttpServlet30Dispatcher;
 import org.jboss.resteasy.plugins.server.servlet.ResteasyContextParameters;
+import org.keycloak.platform.Platform;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -62,6 +67,8 @@ public class EmbeddedKeycloakConfig {
 
 				if ("spring/datasource".equals(name)) {
 					return dataSource;
+				} else if (name.startsWith("java:jboss/ee/concurrency/executor/")) {
+					return fixedThreadPool();
 				}
 
 				return null;
@@ -77,5 +84,16 @@ public class EmbeddedKeycloakConfig {
 				// NOOP
 			}
 		});
+	}
+	
+	@Bean("fixedThreadPool")
+	public ExecutorService fixedThreadPool() {
+		return Executors.newFixedThreadPool(5);
+	}
+
+	@Bean
+	@ConditionalOnMissingBean(name = "springBootPlatform")
+	protected SimplePlatformProvider springBootPlatform() {
+		return (SimplePlatformProvider) Platform.getPlatform();
 	}
 }
