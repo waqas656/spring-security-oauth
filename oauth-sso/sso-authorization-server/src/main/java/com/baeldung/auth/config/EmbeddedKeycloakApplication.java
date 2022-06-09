@@ -3,6 +3,7 @@ package com.baeldung.auth.config;
 import java.util.NoSuchElementException;
 
 import org.keycloak.Config;
+import org.keycloak.exportimport.ExportImportManager;
 import org.keycloak.models.KeycloakSession;
 import org.keycloak.representations.idm.RealmRepresentation;
 import org.keycloak.services.managers.ApplianceBootstrap;
@@ -29,14 +30,13 @@ public class EmbeddedKeycloakApplication extends KeycloakApplication {
             .orElseThrow(() -> new NoSuchElementException("No value present")));
     }
 
-    public EmbeddedKeycloakApplication() {
-
-        super();
-
-        createMasterRealmAdminUser();
-
-        createBaeldungRealm();
-    }
+    @Override
+	protected ExportImportManager bootstrap() {
+		final ExportImportManager exportImportManager = super.bootstrap();
+		createMasterRealmAdminUser();
+		createBaeldungRealm();
+		return exportImportManager;
+	}
 
     private void createMasterRealmAdminUser() {
 
