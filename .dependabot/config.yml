@@ -169,6 +169,15 @@ update_configs:
       - match:
           dependency_name: "eventsource"
           version_requirement: "1.0.7"
+      - match:
+          dependency_name: "loader-utils"
+          version_requirement: ["1.2.3", "1.4.0"]
+      - match:
+          dependency_name: "@angular-devkit/build-angular"
+          version_requirement: "0.13.7"
+      - match:
+          dependency_name: "terser"
+          version_requirement: "3.17.0"
   - package_manager: "java:maven"
     directory: "/"
     update_schedule: "daily"
