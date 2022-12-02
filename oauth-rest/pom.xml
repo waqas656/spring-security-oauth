@@ -20,6 +20,7 @@
         <module>oauth-resource-server</module>
         <module>oauth-ui-authorization-code-angular</module>
         <module>oauth-ui-authorization-code-angular-zuul</module>
+        <module>oauth-client-spring</module>
     </modules>
 
 </project>
