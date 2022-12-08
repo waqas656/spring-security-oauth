@@ -35,6 +35,14 @@
         <module>2x</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+    </dependencies>
+    
     <repositories>
         <repository>
             <id>spring-snapshots</id>
