@@ -171,13 +171,22 @@ update_configs:
           version_requirement: "1.0.7"
       - match:
           dependency_name: "loader-utils"
-          version_requirement: ["1.2.3", "1.4.0"]
+          version_requirement: ["1.2.3", "1.4.0", "3.2.1"]
       - match:
           dependency_name: "@angular-devkit/build-angular"
-          version_requirement: "0.13.7"
+          version_requirement: ["0.13.7", "15.0.2"]
       - match:
           dependency_name: "terser"
           version_requirement: "3.17.0"
+      - match:
+          dependency_name: "express"
+          version_requirement: "4.18.2"
+      - match:
+          dependency_name: "qs"
+          version_requirement: "6.5.3"
+      - match:
+          dependency_name: "decode-uri-component"
+          version_requirement: "0.2.2"
   - package_manager: "java:maven"
     directory: "/"
     update_schedule: "daily"
@@ -185,3 +194,6 @@ update_configs:
       - match:
           dependency_name: "org.springframework:spring-webflux"
           version_requirement: "5.3.9"
+      - match:
+          dependency_name: "commons-io:commons-io"
+          version_requirement: "2.7"
