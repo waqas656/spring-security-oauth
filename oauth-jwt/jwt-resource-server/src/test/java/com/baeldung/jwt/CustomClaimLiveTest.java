@@ -23,6 +23,7 @@ public class CustomClaimLiveTest {
     private final String authorizeUrlPattern = "http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/auth?response_type=code&client_id=jwtClient&scope=%s&redirect_uri=" + redirectUrl;
     private final String tokenUrl = "http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/token";
     private final String userInfoResourceUrl = "http://localhost:8081/jwt-resource-server/user/info/custom";
+    private final String userInfoResourceUrl2 = "http://localhost:8081/jwt-resource-server/user/info";
 
     @Test
     public void givenUserWithReadScope_whenGetUserInformationResource_thenSuccess() {
@@ -70,6 +71,15 @@ public class CustomClaimLiveTest {
             .post(tokenUrl);
         return response.jsonPath()
             .getString("access_token");
+    }
+
+    @Test
+    public void givenUserWithReadScopeAndCustomClaimOfTestEmail_whenGetUserInformationResource_thenSuccess() {
+        String accessToken = obtainAccessToken("read");
+        Response response = RestAssured.given()
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
+                .get(userInfoResourceUrl2);
+        assertThat(response.as(Map.class)).containsEntry("error", "Emails with suffix @test.com are only allowed");
     }
 
 }

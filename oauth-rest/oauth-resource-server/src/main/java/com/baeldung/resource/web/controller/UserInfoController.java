@@ -13,6 +13,12 @@ public class UserInfoController {
 
     @GetMapping("/user/info")
     public Map<String, Object> getUserInfo(@AuthenticationPrincipal Jwt principal) {
-        return Collections.singletonMap("user_name", principal.getClaimAsString("preferred_username"));
+        String preferred_username = principal.getClaimAsString("preferred_username");
+        if(preferred_username.endsWith("@test.com")) {
+            return Collections.singletonMap("user_name", principal.getClaimAsString("preferred_username"));
+        }
+
+        return Collections.singletonMap("error", "Emails with suffix @test.com are only allowed");
     }
+
 }
